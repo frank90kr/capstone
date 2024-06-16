@@ -1,0 +1,176 @@
+/* Animazione titolo */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: black;
+  }
+}
+
+.typewriter h1 {
+  overflow: hidden; /* Ensures the text stays within the container */
+  border-right: 0.15em solid black; /* The typewriter cursor */
+  white-space: nowrap; /* Keeps the text on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em; /* Adjust as needed */
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+.hero-text {
+  margin-top: 50px; /* Add some top margin */
+}
+
+.title-margin {
+  margin-top: 5rem;
+}
+
+.hero-animation {
+  width: 40rem;
+}
+.div-hero-animation {
+  margin-top: 4rem;
+}
+@media (max-width: 1200px) {
+  .div-hero-animation {
+    display: flex;
+    justify-content: center;
+  }
+}
+@media (min-width: 768px) and (max-width: 1200px) {
+  .div-hero-animation {
+    width: 22rem;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .title-margin {
+    margin-top: 3rem;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .p-hero {
+    text-align: center;
+  }
+
+  .hero-animation {
+    width: 20rem;
+  }
+}
+
+.sponsor-logo {
+  width: 5rem;
+}
+.udemy {
+  width: 4rem;
+}
+.codecademy {
+  width: 5.2rem;
+}
+.meta {
+  width: 4.8rem;
+}
+
+/* Under hero */
+.under-hero {
+  margin-top: 8.4rem;
+}
+.under-hero {
+  background: rgb(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  gap: 5rem;
+  padding-left: 15%;
+  padding-right: 15%;
+}
+.div-under-hero {
+  height: 10rem;
+}
+.div-icon-under-hero {
+  background-color: #009970;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 25px;
+  filter: drop-shadow(0 0 0.9rem rgb(181, 181, 181));
+}
+@media (max-width: 768px) {
+  .container-under-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .div-under-hero {
+    height: 7rem;
+  }
+  .div-icon-under-hero {
+    width: 5rem;
+    height: 4rem;
+  }
+  .hero-animation {
+    width: 19rem;
+  }
+}
+@media (max-width: 576px) {
+  .div-hero-animation {
+    display: flex;
+    justify-content: center;
+  }
+}
+/* Section2 */
+.section2 {
+  background-color: #9bd1e5;
+}
+.animation-section2 {
+  width: 22rem;
+}
+
+/* Section Card's Course */
+.group-cards {
+  filter: drop-shadow(0 0 0.75rem rgb(178, 178, 178));
+}
+
+.course-image {
+  height: 180px;
+  object-fit: cover;
+}
+/* Effetto hover su card */
+.card {
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+}
+
+.card-body {
+  padding: 20px;
+  flex: 1;
+}
+
+.card:hover {
+  border-color: #ddd; /* Opzionale, se si desidera mantenere lo stesso colore del bordo */
+  box-shadow: 0px 0px 10px 5px rgba(0, 189, 120, 0.69);
+}
+
+.close {
+  background-color: rgb(195, 23, 23);
+}
+.close:hover {
+  background-color: rgb(227, 31, 31);
+}

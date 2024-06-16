@@ -1,0 +1,20 @@
+.hero-lessons {
+  max-width: 90%;
+  height: auto;
+}
+.container-img-lesson {
+  margin-top: 5rem;
+}
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* Imposta l'aspect ratio a 16:9 */
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90%;
+}
