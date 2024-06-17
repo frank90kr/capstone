@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Nav, Navbar, Dropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./TopNav.css"; // Se necessario per stili personalizzati
@@ -12,6 +12,21 @@ const TopNav = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const [showCorsiMenu, setShowCorsiMenu] = useState(false);
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    // Funzione per ottenere i dati dei corsi disponibili
+    const fetchCourses = async () => {
+      try {
+        const response = await axios.get("/api/courses"); // Assumi che ci sia un'API che fornisce i dati dei corsi
+        setCourses(response.data); // Imposta i corsi nello stato
+      } catch (error) {
+        console.error("Errore nel recupero dei corsi:", error);
+      }
+    };
+
+    fetchCourses(); // Chiama la funzione di fetch dei corsi all'avvio del componente
+  }, []);
 
   const logout = () => {
     axios
@@ -21,7 +36,7 @@ const TopNav = () => {
         navigate("/login");
       })
       .catch((error) => {
-        console.error("Logout failed:", error);
+        console.error("Logout fallito:", error);
       });
   };
 
@@ -47,18 +62,11 @@ const TopNav = () => {
               </Nav.Link>
 
               <Dropdown.Menu>
-                <Dropdown.Item as={Link} to="/lessons/1">
-                  Corso 1
-                </Dropdown.Item>
-                <Dropdown.Item as={Link} to="/lessons/2">
-                  Corso 2
-                </Dropdown.Item>
-                <Dropdown.Item as={Link} to="/lessons/3">
-                  Corso 3
-                </Dropdown.Item>
-                <Dropdown.Item as={Link} to="/lessons/4">
-                  Corso 4
-                </Dropdown.Item>
+                {courses.map((course) => (
+                  <Dropdown.Item key={course.id} as={Link} to={`/lessons/${course.id}`}>
+                    {course.title}
+                  </Dropdown.Item>
+                ))}
               </Dropdown.Menu>
             </Dropdown>
 
@@ -74,7 +82,7 @@ const TopNav = () => {
           </Nav>
 
           <Nav className="justify-content-end flex-grow-1 gap-1 navbar-nav">
-            {user ? (
+            {user && user.role === "teacher" ? (
               <Dropdown>
                 <Dropdown.Toggle className="user-login text-decoration-none" variant="link" id="dropdown-basic">
                   {user.name}
@@ -82,11 +90,23 @@ const TopNav = () => {
 
                 <Dropdown.Menu>
                   <Dropdown.Item as={Link} to="/teacher">
-                    Profilo
+                    Modifica
                   </Dropdown.Item>
                   <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
+            ) : user ? (
+              <>
+                <Dropdown>
+                  <Dropdown.Toggle className="user-login text-decoration-none" variant="link" id="dropdown-basic">
+                    {user.name}
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu>
+                    <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </>
             ) : (
               <>
                 <Nav.Link className="login-button text-white px-4" href="/login">

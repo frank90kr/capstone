@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Accordion, Row, Container, Col } from "react-bootstrap";
-import YouTube from "react-youtube";
+// import YouTube from "react-youtube";
 import "./Lessons.css";
 
 const Lessons = () => {
@@ -21,15 +21,19 @@ const Lessons = () => {
       .catch((err) => console.error(err));
   }, [id]);
 
-  // Estrai l'ID del video da course.video_url
-  const videoId = course.video_url ? course.video_url.split("v=")[1] : null;
+  // // Estrai l'ID del video da course.video_url
+  // const videoId = course.video_url ? course.video_url.split("v=")[1] : null;
 
   return (
     <Container>
       <Row className="container-img-lesson justify-content-center">
-        <img className="hero-lessons d-block img-fluid" src={course.image} alt={course.title} />
+        <img
+          className="hero-lessons d-block img-fluid"
+          src={"http://localhost:8000/" + course.image}
+          alt={course.title}
+        />
       </Row>
-      <Row className="mt-4 justify-content-center">
+      {/* <Row className="mt-4 justify-content-center">
         <Col xs={10} sm={10} lg={8}>
           <div className="video-container mt-3">
             {videoId && (
@@ -42,7 +46,7 @@ const Lessons = () => {
             )}
           </div>
         </Col>
-      </Row>
+      </Row> */}
       <div className="container mt-4">
         <h1 className="text-center mb-4">Lezioni del Corso</h1>
         <Row className="justify-content-center">

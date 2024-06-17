@@ -16,6 +16,8 @@ import { LOGIN } from "./redux/actions";
 import CoursesList from "./pages/CoursesList";
 
 import Teacher from "./pages/Teacher";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -35,6 +37,14 @@ function App() {
       .catch((err) => console.log(err))
       .finally(() => setLoaded(true));
   }, [dispatch]);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Durata dell'animazione in millisecondi
+      easing: "ease-in-out", // Funzione di easing
+      once: false, // Se true, l'animazione avviene solo una volta durante lo scroll
+    });
+  }, []);
 
   return loaded ? (
     <BrowserRouter>

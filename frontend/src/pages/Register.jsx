@@ -2,12 +2,14 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "../redux/actions";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  //spinner
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -29,6 +31,7 @@ const Register = () => {
 
   const submitLogin = (ev) => {
     ev.preventDefault();
+    setLoading(true); // Imposta lo stato di caricamento a true quando inizia la registrazione
     axios
       .get("/sanctum/csrf-cookie")
       .then(() => {
@@ -48,17 +51,21 @@ const Register = () => {
           type: LOGIN,
           payload: res.data,
         });
+
         //reindirizza alla home
         navigate("/");
       })
       .catch((err) => {
         console.log(err.response.data.errors);
         setErrors(err.response.data.errors);
+      })
+      .finally(() => {
+        setLoading(false); // Imposta lo stato di caricamento a false alla fine del processo
       });
   };
 
   return (
-    <Container className="">
+    <Container>
       <Row className="d-flex justify-content-center align-items-center min-vh-100 mt-5">
         <Col md={4} className="mx-auto">
           <h4>Registrati</h4>
@@ -135,8 +142,17 @@ const Register = () => {
               />
             </Form.Group>
 
-            <Button className="login-button w-100 fw-bold fs-6 text-white" variant=" mt-3" type="submit">
-              Registrati
+            <Button
+              className="login-button w-100 fw-bold fs-6 text-white"
+              variant=" mt-3"
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? (
+                <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+              ) : (
+                "Registrati"
+              )}
             </Button>
             <p className="lead fs-6 mt-3 text-center">
               Effettuando la registrazione, accetti i nostri Termini di utilizzo e la nostra Informativa sulla privacy.

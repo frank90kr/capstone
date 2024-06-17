@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Row, Col, Alert } from "react-bootstrap";
+import { Form, Button, Container, Row, Col, Alert, Spinner } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -8,11 +8,14 @@ import { LOGIN } from "../redux/actions";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // Stato per gestire il caricamento
 
   const updateInputValue = (ev) => {
     setFormData((oldFormData) => ({
@@ -23,26 +26,28 @@ const Login = () => {
 
   const submitLogin = (ev) => {
     ev.preventDefault();
+    setLoading(true); // Imposta lo stato di caricamento a true
 
     axios
       .get("/sanctum/csrf-cookie")
       .then(() => axios.post("/login", formData))
       .then(() => axios.get("/api/user"))
       .then((res) => {
-        // salvare i dati dello user nel Redux state
         dispatch({ type: LOGIN, payload: res.data });
-        // reindirizzare alla pagina home
-        navigate("/");
+        navigate("/"); // Reindirizza alla home dopo il login
       })
       .catch((error) => {
         console.error("Login failed:", error);
         setError("Le tue credenziali sono errate");
+      })
+      .finally(() => {
+        setLoading(false); // Imposta lo stato di caricamento a false alla fine del processo
       });
   };
 
   return (
-    <Container className="">
-      <Row className="d-flex justify-content-center align-items-center min-vh-100">
+    <Container>
+      <Row className="justify-content-center align-items-center min-vh-100">
         <Col md={4} className="mx-auto">
           <h4>Accedi al tuo account</h4>
           <Form onSubmit={(ev) => submitLogin(ev)} noValidate>
@@ -70,21 +75,29 @@ const Login = () => {
                 placeholder="password"
               />
             </Form.Group>
-            <Button className="login-button w-100 fw-bold fs-6 text-white" variant=" mt-3" type="submit">
-              Login
+
+            <Button
+              className="login-button w-100 fw-bold fs-6 text-white"
+              variant=" mt-3"
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? <Spinner animation="border" size="sm" /> : "Login"}
             </Button>
+
             {error && (
               <Alert className="mt-3" variant="danger">
                 {error}
               </Alert>
             )}
+
             <div className="d-flex justify-content-center mt-3">
               <hr className="w-75" />
             </div>
+
             <p className="text-center">
               Non hai un account?{" "}
               <Link className="text-decoration-none ms-1" to="/register">
-                {" "}
                 Registrati
               </Link>
             </p>

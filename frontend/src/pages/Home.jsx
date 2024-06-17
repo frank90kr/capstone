@@ -100,7 +100,7 @@ const Home = () => {
 
       {/* Under Hero */}
 
-      <Container fluid className="under-hero">
+      <Container fluid className="under-hero" data-aos="fade-up" data-aos-duration="1000">
         <Row className="container-under-hero d-sm-flex justify-content-center align-items-center ms-3">
           <Col>
             <div className="div-under-hero d-flex align-items-center">
@@ -139,10 +139,16 @@ const Home = () => {
       </Container>
 
       {/* Section 2 */}
-      <Container fluid className="section2 mt-5">
+      <Container fluid className="section2 mt-5" data-aos="fade-right" data-aos-duration="2500">
         <Row className="align-items-start justify-content-center">
           <Col lg={4}>
-            <Lottie className="animation-section2 mx-auto" animationData={section2AnimationData} loop={true} />
+            <Lottie
+              className="animation-section2 mx-auto"
+              animationData={section2AnimationData}
+              loop={true}
+              data-aos="zoom-in"
+              data-aos-duration="5000"
+            />
           </Col>
           <Col lg={5}>
             <h2 className="mt-4">What Kind of Courses of Learning</h2>
@@ -153,13 +159,13 @@ const Home = () => {
 
             <div className="header-section2-icon mt-5">
               <div className="section2-icon d-flex">
-                <div className="d-flex mt-4 gap-5 align-items-center">
+                <div className="d-flex mt-4 gap-5 align-items-center" data-aos="fade-up" data-aos-duration="5000">
                   <div className="laptop-house fs-1 text-white d-flex justify-content-center">
                     <FaLaptopHouse />
                   </div>
                   <h3>Courses</h3>
                 </div>
-                <div className="d-flex mt-4 gap-5 align-items-center">
+                <div className="d-flex mt-4 gap-5 align-items-center" data-aos="fade-up" data-aos-duration="5000">
                   <div className="laptop-house fs-1 text-white d-flex justify-content-center ms-5">
                     <FaLaptopHouse />
                   </div>
@@ -169,13 +175,13 @@ const Home = () => {
             </div>
             <div className="header-section2-icon">
               <div className="section2-icon d-flex">
-                <div className="d-flex mt-4 gap-5 align-items-center">
+                <div className="d-flex mt-4 gap-5 align-items-center" data-aos="fade-down" data-aos-duration="5000">
                   <div className="laptop-house fs-1 text-white d-flex justify-content-center">
                     <FaLaptopHouse />
                   </div>
                   <h3>Courses</h3>
                 </div>
-                <div className="d-flex mt-4 gap-5 align-items-center">
+                <div className="d-flex mt-4 gap-5 align-items-center" data-aos="fade-down" data-aos-duration="5000">
                   <div className="laptop-house fs-1 text-white d-flex justify-content-center ms-5">
                     <FaLaptopHouse />
                   </div>
