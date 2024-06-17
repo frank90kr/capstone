@@ -42,18 +42,28 @@ class CourseController extends Controller
     {
    
     //Prendo i 3 metodi presenti nel Model Course
-        $course = Course::with('payments', 'creator', 'lessons')->findOrFail($id);
+        $course = Course::with('payments', 'users', 'lessons')->findOrFail($id);
         return response()->json($course);
     }
 
     //Creazione nuovo corso
-    public function store(StoreCourseRequest $request)
+    public function store(Request $request)
     {
-        $validatedData = $request->validated();
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'course_img' => 'nullable|image|max:2048',
+        ]);
+
+        if ($request->hasFile('course_img')) {
+            $imagePath = $request->file('course_img')->store('course_images', 'public');
+            $validatedData['image'] = "storage/".$imagePath;
+        }
 
         $course = new Course();
         $course->fill($validatedData);
-        $course->creator_id = Auth::id(); // Set the creator_id to the authenticated user's ID
+        $course->creator_id = Auth::id(); 
 
         $course->save();
 

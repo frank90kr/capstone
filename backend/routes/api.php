@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
     Route::put('/courses/{id}', [CourseController::class, 'update'])->name('courses.update');
     Route::delete('/courses/{id}', [CourseController::class, 'destroy'])->name('courses.destroy');
+    Route::post('/lessons', [LessonController::class, 'store']);
 
     // Rotte per le lezioni
     Route::get('/lessons', [LessonController::class, 'index'])->name('lessons.index');

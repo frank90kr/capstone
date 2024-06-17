@@ -28,9 +28,9 @@ class Course extends Model
         return $this->hasMany(Lesson::class);
     }
 
-    public function user() : BelongsTo
+    public function users() : BelongsTo
     {
-        return $this->belongsTo(User::class, 'creator_id'); //relazione uno a molti
+        return $this->belongsTo(User::class); //relazione uno a molti
     }
 
     public function payments(): HasMany
