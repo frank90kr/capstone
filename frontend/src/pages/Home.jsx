@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+// import { useTranslation } from "react-i18next";
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
@@ -78,7 +79,7 @@ const Home = () => {
           <Col>
             <div className="hero-text me-3">
               <div className="typewriter">
-                <h1>Become a developer</h1>
+                <h1>Diventa un Developer</h1>
               </div>
               {/* <h1 className="title-margin">Become a developer</h1> */}
               <p className="p-hero lead">

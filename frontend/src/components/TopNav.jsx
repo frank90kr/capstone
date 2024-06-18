@@ -115,7 +115,7 @@ const TopNav = () => {
               </div>
             ) : (
               <>
-                <Nav.Link className="login-button text-white px-4" href="/login">
+                <Nav.Link className="login-button text-white px-4 mt-1" href="/login">
                   Login
                 </Nav.Link>
                 <Nav.Link className="px-4" href="/register">

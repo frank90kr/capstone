@@ -10,14 +10,13 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import GuestRoutes from "./pages/GuestRoutes";
 import ProtectedRoutes from "./pages/ProtectedRoutes";
-
 import { useDispatch } from "react-redux";
 import { LOGIN } from "./redux/actions";
 import CoursesList from "./pages/CoursesList";
-
 import Teacher from "./pages/Teacher";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useTranslation } from "react-i18next";
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -40,15 +39,21 @@ function App() {
 
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Durata dell'animazione in millisecondi
-      easing: "ease-in-out", // Funzione di easing
-      once: false, // Se true, l'animazione avviene solo una volta durante lo scroll
+      duration: 1000,
+      easing: "ease-in-out",
+      once: false,
     });
   }, []);
 
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language);
+  };
+
   return loaded ? (
     <BrowserRouter>
-      <TopNav />
+      <TopNav changeLanguage={changeLanguage} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/courses-list" element={<CoursesList />} />
