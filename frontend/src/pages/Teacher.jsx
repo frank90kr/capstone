@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Container, Form, Button, Table, Modal, Row, Col } from "react-bootstrap";
+import { Container, Form, Button, Table, Modal, Row, Col, ListGroup, OverlayTrigger, Tooltip } from "react-bootstrap";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import "./Teacher.css";
+import { FaInfo } from "react-icons/fa";
 
 const Teacher = () => {
   const [title, setTitle] = useState("");
@@ -18,6 +21,15 @@ const Teacher = () => {
   const [lessonContent, setLessonContent] = useState("");
   const [language, setLanguage] = useState("");
   const [lessonCourseId, setLessonCourseId] = useState("");
+  const userName = useSelector((state) => {
+    return state.user?.name;
+  }); // stato per nome utente
+  const userEmail = useSelector((state) => {
+    return state.user?.email;
+  }); // stato per email utente
+  const userRole = useSelector((state) => {
+    return state.user?.role;
+  }); // stato per ruolo utente
 
   //spinner e alert
   const [showErrorModal, setShowErrorModal] = useState(false);
@@ -164,7 +176,7 @@ const Teacher = () => {
   };
 
   return (
-    <Container>
+    <Container className="container-teacher">
       {/* Messaggio di errore */}
       <Modal className="" show={showErrorModal} onHide={() => setShowErrorModal(false)} centered>
         <Modal.Header closeButton>
@@ -191,14 +203,47 @@ const Teacher = () => {
         </Modal.Footer>
       </Modal>
 
+      <div className="d-flex flex-column align-items-center">
+        <h1 className="text-center">Bentornato {userName}!</h1>
+        <OverlayTrigger
+          placement="bottom"
+          overlay={
+            <Tooltip id="tooltip-bottom">
+              La pagina presenta una lista di tutti i corsi disponibili in formato tabellare, con dettagli chiave come
+              titolo, descrizione, prezzo e azioni disponibili (Modifica ed Elimina). Inoltre, offre moduli ben
+              strutturati per l'inserimento di nuovi corsi e lezioni, garantendo un'esperienza utente fluida e coerente.
+            </Tooltip>
+          }
+        >
+          <div style={{ marginTop: "10px" }}>
+            <span className="d-inline-block" style={{ cursor: "pointer" }}>
+              <FaInfo className="fs-5" />
+              Passa il mouse se hai bisogno di aiuto
+            </span>
+          </div>
+        </OverlayTrigger>
+      </div>
+
+      <Row className="">
+        <Col>
+          <p className="fw-bold">Profilo utente</p>
+          <ListGroup.Item>username: {userName}</ListGroup.Item>
+          <hr className="w-25" />
+          <ListGroup.Item>e-mail: {userEmail}</ListGroup.Item>
+          <hr className="w-25" />
+          <ListGroup.Item>role: {userRole}</ListGroup.Item>
+        </Col>
+      </Row>
+
       <div className="text-center mt-5">
-        <h1>Courses List</h1>
+        <h1>Lista dei Corsi</h1>
         <Table striped bordered hover responsive="sm" className="mx-auto" style={{ maxWidth: "1000px" }}>
           <thead>
             <tr>
               <th className="text-center">Title</th>
               <th className="text-center">Description</th>
               <th className="text-center">Price</th>
+              <th className="text-center">Teacher</th>
               <th className="text-center">Actions</th>
             </tr>
           </thead>
@@ -208,6 +253,7 @@ const Teacher = () => {
                 <td className="align-middle">{course.title}</td>
                 <td className="align-middle">{course.description}</td>
                 <td className="align-middle">${course.price}</td>
+                <td className="align-middle">{userName}</td>
                 <td className="align-middle">
                   <div className="d-flex flex-column align-items-center">
                     <Button

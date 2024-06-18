@@ -13,6 +13,7 @@ import { FaLaptopHouse } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
@@ -21,6 +22,12 @@ const Home = () => {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [authenticated, setAuthenticated] = useState(false); // Stato per verificare se l'utente è autenticato
   const navigate = useNavigate();
+  const userRole = useSelector((state) => {
+    return state.user?.role;
+  }); // stato per ruolo utente
+  const userName = useSelector((state) => {
+    return state.user?.name;
+  }); // stato per nome utente
 
   useEffect(() => {
     axios
@@ -38,6 +45,8 @@ const Home = () => {
       .catch((error) => {
         console.error("Error checking authentication:", error);
       });
+
+    // Chiamata per ottenere il ruolo dell'utente
   }, []);
 
   const handleAccessCourse = () => {
@@ -206,6 +215,7 @@ const Home = () => {
                   {/* <Card.Text>{course.description}</Card.Text> */}
                 </Card.Body>
                 <Card.Footer>
+                  <p className="text-secondary">{userName}</p>
                   <p>Prezzo {course.price}</p>
                 </Card.Footer>
               </Card>
@@ -217,15 +227,28 @@ const Home = () => {
             <Modal.Title>Corso: {selectedCourse?.title}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
+            <Card.Img src={selectedCourse?.image} alt={selectedCourse?.title} className="img-fluid mb-3" />
             <p>{selectedCourse?.description}</p>
           </Modal.Body>
           <Modal.Footer>
             {authenticated ? (
-              <Link to={`/lessons/${selectedCourse?.id}`}>
+              userRole === "teacher" ? (
+                <Link to={`/lessons/${selectedCourse?.id}`}>
+                  <Button className="login-button border border-none" onClick={handleCloseModal}>
+                    Vai al corso
+                  </Button>
+                </Link>
+              ) : selectedCourse?.price > 0 ? (
                 <Button className="login-button border border-none" onClick={handleCloseModal}>
-                  Vai al corso
+                  Acquista
                 </Button>
-              </Link>
+              ) : (
+                <Link to={`/lessons/${selectedCourse?.id}`}>
+                  <Button className="login-button border border-none" onClick={handleCloseModal}>
+                    Vai al corso
+                  </Button>
+                </Link>
+              )
             ) : (
               <Link to="/login">
                 <Button className="login-button border border-none" onClick={handleCloseModal}>

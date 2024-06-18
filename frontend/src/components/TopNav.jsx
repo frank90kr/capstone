@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LOGOUT } from "../redux/actions";
 import axios from "axios";
+import { MdAdminPanelSettings } from "react-icons/md";
+import { FaUserGraduate } from "react-icons/fa";
 
 const TopNav = () => {
   const dispatch = useDispatch();
@@ -83,20 +85,24 @@ const TopNav = () => {
 
           <Nav className="justify-content-end flex-grow-1 gap-1 navbar-nav">
             {user && user.role === "teacher" ? (
-              <Dropdown>
-                <Dropdown.Toggle className="user-login text-decoration-none" variant="link" id="dropdown-basic">
-                  {user.name}
-                </Dropdown.Toggle>
+              <div className="d-flex align-items-center">
+                <MdAdminPanelSettings className="me-2" />
+                <Dropdown>
+                  <Dropdown.Toggle className="user-login text-decoration-none" variant="link" id="dropdown-basic">
+                    {user.name}
+                  </Dropdown.Toggle>
 
-                <Dropdown.Menu>
-                  <Dropdown.Item as={Link} to="/teacher">
-                    Modifica
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+                  <Dropdown.Menu>
+                    <Dropdown.Item as={Link} to="/teacher">
+                      Gestione Corsi
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
             ) : user ? (
-              <>
+              <div className="d-flex align-items-center">
+                <FaUserGraduate className="me-2" />
                 <Dropdown>
                   <Dropdown.Toggle className="user-login text-decoration-none" variant="link" id="dropdown-basic">
                     {user.name}
@@ -106,13 +112,13 @@ const TopNav = () => {
                     <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
-              </>
+              </div>
             ) : (
               <>
                 <Nav.Link className="login-button text-white px-4" href="/login">
                   Login
                 </Nav.Link>
-                <Nav.Link className=" px-4" href="/register">
+                <Nav.Link className="px-4" href="/register">
                   Registrati
                 </Nav.Link>
               </>
