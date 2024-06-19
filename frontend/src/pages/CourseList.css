@@ -1,0 +1,47 @@
+.course-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.card {
+  height: 100%;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-footer {
+  background-color: transparent; /* Rimuove lo sfondo predefinito del footer */
+  border-top: none; /* Rimuove il bordo superiore del footer */
+}
+
+.course-list-title {
+  margin-top: 5rem;
+}
+
+.course-container {
+  margin-top: 3rem;
+}
+/* Icona mouse */
+@keyframes floatAnimation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.float-icon {
+  font-size: 2rem; /* Imposta la dimensione dell'icona */
+  color: #333; /* Colore dell'icona */
+  animation: floatAnimation 1.3s ease-in-out infinite; /* Applica l'animazione */
+}

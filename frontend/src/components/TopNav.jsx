@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Nav, Navbar, Dropdown } from "react-bootstrap";
+import { Container, Nav, Navbar, Dropdown, Button, Modal, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./TopNav.css"; // Se necessario per stili personalizzati
 import { Link, useNavigate } from "react-router-dom";
@@ -15,6 +15,8 @@ const TopNav = () => {
   const user = useSelector((state) => state.user);
   const [showCorsiMenu, setShowCorsiMenu] = useState(false);
   const [courses, setCourses] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     // Funzione per ottenere i dati dei corsi disponibili
@@ -42,91 +44,147 @@ const TopNav = () => {
       });
   };
 
+  const handleShowModal = (course) => {
+    setSelectedCourse(course);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedCourse(null);
+  };
+
   return (
-    <Navbar expand="lg" className="navbar navbar-expand-lg fixed-top">
-      <Container>
-        <Navbar.Brand className="me-auto">
-          <Link className="navbar-brand" to="/">
-            Navbar
-          </Link>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarNav" />
-        <Navbar.Collapse id="navbarNav">
-          <Nav className="justify-content-end flex-grow-1 gap-1 navbar-nav">
-            <Dropdown
-              show={showCorsiMenu}
-              onMouseEnter={() => setShowCorsiMenu(true)}
-              onMouseLeave={() => setShowCorsiMenu(false)}
-              className="dropdown-corsi"
-            >
-              <Nav.Link as={Link} to="/courses-list" className="link-nav mx-lg-2">
-                Corsi
-              </Nav.Link>
+    <>
+      <Navbar expand="lg" className="navbar navbar-expand-lg fixed-top">
+        <Container>
+          <Navbar.Brand className="me-auto">
+            <Link className="navbar-brand" to="/">
+              Navbar
+            </Link>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="navbarNav" />
+          <Navbar.Collapse id="navbarNav">
+            <Nav className="justify-content-end flex-grow-1 gap-1 navbar-nav">
+              <Dropdown
+                show={showCorsiMenu}
+                onMouseEnter={() => setShowCorsiMenu(true)}
+                onMouseLeave={() => setShowCorsiMenu(false)}
+                className="dropdown-corsi"
+              >
+                <Nav.Link as={Link} to="/courses-list" className="link-nav mx-lg-2">
+                  Corsi
+                </Nav.Link>
 
-              <Dropdown.Menu>
-                {courses.map((course) => (
-                  <Dropdown.Item key={course.id} as={Link} to={`/lessons/${course.id}`}>
-                    {course.title}
-                  </Dropdown.Item>
-                ))}
-              </Dropdown.Menu>
-            </Dropdown>
-
-            <Nav.Link className="link-nav mx-lg-2" href="#action2">
-              About
-            </Nav.Link>
-            <Nav.Link className="link-nav mx-lg-2" href="#action3">
-              Services
-            </Nav.Link>
-            <Nav.Link className="link-nav mx-lg-2" href="#action4">
-              Contact
-            </Nav.Link>
-          </Nav>
-
-          <Nav className="justify-content-end flex-grow-1 gap-1 navbar-nav">
-            {user && user.role === "teacher" ? (
-              <div className="d-flex align-items-center">
-                <MdAdminPanelSettings className="me-2" />
-                <Dropdown>
-                  <Dropdown.Toggle className="user-login text-decoration-none" variant="link" id="dropdown-basic">
-                    {user.name}
-                  </Dropdown.Toggle>
-
-                  <Dropdown.Menu>
-                    <Dropdown.Item as={Link} to="/teacher">
-                      Gestione Corsi
+                <Dropdown.Menu>
+                  {courses.map((course) => (
+                    <Dropdown.Item key={course.id} onClick={() => handleShowModal(course)}>
+                      {course.title}
                     </Dropdown.Item>
-                    <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </div>
-            ) : user ? (
-              <div className="d-flex align-items-center">
-                <FaUserGraduate className="me-2" />
-                <Dropdown>
-                  <Dropdown.Toggle className="user-login text-decoration-none" variant="link" id="dropdown-basic">
-                    {user.name}
-                  </Dropdown.Toggle>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
 
-                  <Dropdown.Menu>
-                    <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </div>
+              <Nav.Link className="link-nav mx-lg-2" href="/quiz">
+                Quiz
+              </Nav.Link>
+              <Nav.Link className="link-nav mx-lg-2" href="#action2">
+                About
+              </Nav.Link>
+              <Nav.Link className="link-nav mx-lg-2" href="#action3">
+                Services
+              </Nav.Link>
+              <Nav.Link className="link-nav mx-lg-2" href="#action4">
+                Contact
+              </Nav.Link>
+            </Nav>
+
+            <Nav className="justify-content-end flex-grow-1 gap-1 navbar-nav">
+              {user && user.role === "teacher" ? (
+                <div className="d-flex align-items-center">
+                  <MdAdminPanelSettings className="me-2" />
+                  <Dropdown>
+                    <Dropdown.Toggle className="user-login text-decoration-none" variant="link" id="dropdown-basic">
+                      {user.name}
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item as={Link} to="/teacher">
+                        Gestione Corsi
+                      </Dropdown.Item>
+                      <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+              ) : user ? (
+                <div className="d-flex align-items-center">
+                  <FaUserGraduate className="me-2" />
+                  <Dropdown>
+                    <Dropdown.Toggle className="user-login text-decoration-none" variant="link" id="dropdown-basic">
+                      {user.name}
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+              ) : (
+                <>
+                  <Nav.Link className="login-button text-white px-4 mt-1" href="/login">
+                    Login
+                  </Nav.Link>
+                  <Nav.Link className="px-4" href="/register">
+                    Registrati
+                  </Nav.Link>
+                </>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>{selectedCourse?.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Card.Img src={selectedCourse?.image} alt={selectedCourse?.title} className="img-fluid mb-3" />
+          <p>{selectedCourse?.description}</p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          {user ? (
+            user.role === "teacher" ? (
+              <Link to={`/lessons/${selectedCourse?.id}`}>
+                <Button className="login-button border border-none" onClick={handleCloseModal}>
+                  Vai al corso
+                </Button>
+              </Link>
+            ) : selectedCourse?.price > 0 ? (
+              <Button className="login-button border border-none" onClick={handleCloseModal}>
+                Acquista
+              </Button>
             ) : (
-              <>
-                <Nav.Link className="login-button text-white px-4 mt-1" href="/login">
-                  Login
-                </Nav.Link>
-                <Nav.Link className="px-4" href="/register">
-                  Registrati
-                </Nav.Link>
-              </>
-            )}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+              <Link to={`/lessons/${selectedCourse?.id}`}>
+                <Button className="login-button border border-none" onClick={handleCloseModal}>
+                  Vai al corso
+                </Button>
+              </Link>
+            )
+          ) : (
+            <Link to="/login">
+              <Button className="login-button border border-none" onClick={handleCloseModal}>
+                Effettua l'accesso per visualizzare il corso
+              </Button>
+            </Link>
+          )}
+          <Button className="login-button close border border-none" onClick={handleCloseModal}>
+            Chiudi
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
 

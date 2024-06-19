@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Lottie from "lottie-react";
 import animationData from "../assets/Animation - hero-test.json";
 import "./Home.css";
-import { Button, Card, CardGroup, Col, Container, Modal, Nav, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Modal, Nav, Row } from "react-bootstrap";
 import { CgFileDocument } from "react-icons/cg";
 import { PiVideoLight } from "react-icons/pi";
 import { MdComputer } from "react-icons/md";
@@ -14,7 +14,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import { useTranslation } from "react-i18next";
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
@@ -26,9 +25,9 @@ const Home = () => {
   const userRole = useSelector((state) => {
     return state.user?.role;
   }); // stato per ruolo utente
-  const userName = useSelector((state) => {
-    return state.user?.name;
-  }); // stato per nome utente
+  // const userName = useSelector((state) => {
+  //   return state.user?.name;
+  // }); // stato per nome utente
 
   useEffect(() => {
     axios
@@ -85,7 +84,7 @@ const Home = () => {
               <p className="p-hero lead">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur officiis
               </p>
-              <Nav.Link className="login-button w-50 text-white text-center" href="#action4">
+              <Nav.Link className="login-button w-50 text-white text-center" href="/courses-list">
                 Scopri i nostri corsi
               </Nav.Link>
               <div className="py-3 d-flex gap-4">
@@ -216,7 +215,6 @@ const Home = () => {
                   {/* <Card.Text>{course.description}</Card.Text> */}
                 </Card.Body>
                 <Card.Footer>
-                  <p className="text-secondary">{userName}</p>
                   <p>Prezzo {course.price}</p>
                 </Card.Footer>
               </Card>

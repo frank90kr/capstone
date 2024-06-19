@@ -16,7 +16,8 @@ import CoursesList from "./pages/CoursesList";
 import Teacher from "./pages/Teacher";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useTranslation } from "react-i18next";
+import Quiz from "./pages/Quiz";
+import ScopriSeFaPerTe from "./components/quiz/ScopriSeFaPerTe";
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -45,19 +46,16 @@ function App() {
     });
   }, []);
 
-  const { t, i18n } = useTranslation();
-
-  const changeLanguage = (language) => {
-    i18n.changeLanguage(language);
-  };
-
   return loaded ? (
     <BrowserRouter>
-      <TopNav changeLanguage={changeLanguage} />
+      <TopNav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/courses-list" element={<CoursesList />} />
         <Route path="*" element={<Navigate to="/404" />} />
+        {/* Rotte per gestire i quiz */}
+        <Route path="/quiz" element={<Quiz />} />
+        <Route path="/scopri-se-fa-per-te" element={<ScopriSeFaPerTe />} />
 
         {/* Rotte accessibili solo se non sei loggato */}
         <Route element={<GuestRoutes />}>
