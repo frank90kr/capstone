@@ -73,6 +73,11 @@ const Home = () => {
     setSelectedCourse(null);
   };
 
+  const handlePurchaseCourse = () => {
+    navigate(`/payment/${selectedCourse.id}/${selectedCourse.title}/${selectedCourse.price}`);
+    handleCloseModal(); // Chiusura del modal prima di navigare alla pagina di pagamento
+  };
+
   return (
     <div className="body">
       <Container>
@@ -240,9 +245,11 @@ const Home = () => {
                   </Button>
                 </Link>
               ) : selectedCourse?.price > 0 ? (
-                <Button className="login-button border border-none" onClick={handleCloseModal}>
-                  Acquista
-                </Button>
+                <Link to={`/payment/${selectedCourse?.id}/${selectedCourse.title}/${selectedCourse?.price}`}>
+                  <Button className="login-button border border-none" onClick={handleCloseModal}>
+                    Acquista
+                  </Button>
+                </Link>
               ) : (
                 <Link to={`/lessons/${selectedCourse?.id}`}>
                   <Button className="login-button border border-none" onClick={handleCloseModal}>

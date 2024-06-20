@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
-use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UploadImageController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 // Rotte per verificare lo stato di autenticazione dell'utente
 Route::middleware('auth:sanctum')->get('/user/authenticated', [UserController::class, 'checkAuthentication']);
@@ -24,6 +25,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/courses/{id}', [CourseController::class, 'destroy'])->name('courses.destroy');
     Route::post('/lessons', [LessonController::class, 'store']);
 
+    //Rotte pagamenti
+    Route::post('/payments', [PaymentController::class, 'processPayment']);
     // Rotte per le lezioni
     Route::get('/lessons', [LessonController::class, 'index'])->name('lessons.index');
 });

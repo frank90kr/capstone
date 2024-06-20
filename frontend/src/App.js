@@ -18,6 +18,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Quiz from "./pages/Quiz";
 import ScopriSeFaPerTe from "./components/quiz/ScopriSeFaPerTe";
+import PaymentForm from "./pages/PaymentForm";
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -67,6 +68,7 @@ function App() {
         <Route element={<ProtectedRoutes />}>
           <Route path="/lessons/:id" element={<Lessons />} />
           <Route path="/teacher" element={<Teacher />} />
+          <Route path="/payment/:course_id/:course_title/:course_price" element={<PaymentForm />} />
         </Route>
       </Routes>
     </BrowserRouter>
