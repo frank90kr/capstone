@@ -17,3 +17,11 @@
 .icon-tick {
   color: #009970;
 }
+
+.container-icon-quiz {
+  position: relative;
+}
+.float-icon-quiz {
+  position: absolute;
+  bottom: 4rem;
+}

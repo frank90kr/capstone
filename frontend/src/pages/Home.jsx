@@ -7,6 +7,8 @@ import { CgFileDocument } from "react-icons/cg";
 import { PiVideoLight } from "react-icons/pi";
 import { MdComputer } from "react-icons/md";
 import section2AnimationData from "../assets/Animation - section2.json";
+import sectionQuizAnimationData from "../assets/pacman.json";
+import sectionQuiz2ndAnimationData from "../assets/2nd quizSection.json";
 // import { GiTeacher } from "react-icons/gi";
 import { FaLaptopHouse } from "react-icons/fa";
 // import { MdQuiz } from "react-icons/md";
@@ -260,6 +262,42 @@ const Home = () => {
             </Button>
           </Modal.Footer>
         </Modal>
+      </Container>
+
+      {/* Section 4 Quiz */}
+      <Container fluid className="py-5" data-aos="fade-up" data-aos-duration="2000" loop={true}>
+        <Row className="align-items-center align-content-center justify-content-center container-quiz-home text-white">
+          <Col md={4} className="">
+            <h2>Divertiti con i nostri quiz!</h2>
+            <p>Lorem ipsum dolor sit amet.lorem10 Lorem ipsum dolor sit, amet consectetur</p>
+            <Nav.Link className="login-button quiz-home-btn w-50 text-white text-center" href="/scopri-se-fa-per-te">
+              l'informatica fa per te?
+            </Nav.Link>
+            <p className="">Oppure</p>
+            <Nav.Link className="login-button quiz-home-btn w-50 text-white text-center" href="/quiz">
+              Scegli il quiz
+            </Nav.Link>
+          </Col>
+          <Col md={2} className="mt-4">
+            <Lottie
+              className="animation2-quiz"
+              animationData={sectionQuiz2ndAnimationData}
+              loop={true}
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+            />
+          </Col>
+          <Col md={3} className="pacman-col">
+            <Lottie
+              className="pacman"
+              animationData={sectionQuizAnimationData}
+              loop={true}
+              data-aos="fade-right"
+              data-aos-duration="3000"
+            />
+            {/* <p className="ms-5">Lorem ipsum dolor sit amet.</p> */}
+          </Col>
+        </Row>
       </Container>
     </div>
   );

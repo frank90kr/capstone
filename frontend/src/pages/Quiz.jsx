@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import animationData from "../../src/assets/Quiz.json";
 import "./Quiz.css";
 import Lottie from "lottie-react";
+import AOS from "aos";
 import { TiTick } from "react-icons/ti";
+import { IoIosArrowDropdownCircle } from "react-icons/io";
 
 const Quiz = () => {
   return (
@@ -15,6 +17,8 @@ const Quiz = () => {
         <Col>
           <Lottie
             className="hero-quiz-animation img-fluid px-3 py-2 ms-lg-5"
+            data-aos="zoom-in"
+            data-aos-duration="1000"
             animationData={animationData}
             loop={true}
           />
@@ -27,17 +31,26 @@ const Quiz = () => {
             sfidarti e divertire.
           </p>
           <br />
-          <p className="lh-base mt-1 fs-5 lh-lg">
-            <TiTick className="icon-tick fs-2 " />
-            Feedback immediato al termine del quiz
+          <p className="lh-base mt-1 fs-5">
+            <div className="" data-aos="fade-left" data-aos-duration="1000">
+              <TiTick className="icon-tick fs-1 " />
+              Feedback immediato al termine del quiz
+            </div>
             <br />
-            <TiTick className="icon-tick fs-2" />
-            Valutazione Finale: Scopri il tuo punteggio
+            <div data-aos="fade-left" data-aos-duration="1300">
+              <TiTick className="icon-tick fs-1" />
+              Valutazione Finale: Scopri il tuo punteggio
+            </div>
             <br />
-            <TiTick className="icon-tick fs-2" />
-            Interfaccia Intuitiva: Un design moderno e user-friendly
+            <div data-aos="fade-left" data-aos-duration="1600">
+              <TiTick className="icon-tick fs-1" />
+              Interfaccia Intuitiva: Un design moderno e user-friendly
+            </div>
           </p>
         </Col>
+        <div className="d-flex justify-content-center container-icon-quiz">
+          <IoIosArrowDropdownCircle className="float-icon float-icon-quiz" />
+        </div>
       </Row>
 
       <Row>

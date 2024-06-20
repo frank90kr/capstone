@@ -1,4 +1,4 @@
-.course-image {
+.courseList-image {
   width: 100%;
   height: auto;
   object-fit: cover;
@@ -16,8 +16,8 @@
 }
 
 .card-footer {
-  background-color: transparent; /* Rimuove lo sfondo predefinito del footer */
-  border-top: none; /* Rimuove il bordo superiore del footer */
+  background-color: transparent;
+  border-top: none;
 }
 
 .course-list-title {

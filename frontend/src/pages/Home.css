@@ -145,7 +145,7 @@
 }
 
 .course-image {
-  height: 180px;
+  height: 200px;
   object-fit: cover;
 }
 /* Effetto hover su card */
@@ -173,4 +173,27 @@
 }
 .close:hover {
   background-color: rgb(227, 31, 31);
+}
+
+/* Section4 Quiz */
+.container-quiz-home {
+  background-color: #0b032d;
+  height: 22rem;
+  padding-left: 15%;
+  padding-right: 15%;
+}
+/* .quiz-home-btn {
+  background-color: #4f6272;
+}
+.quiz-home-btn:hover {
+  background-color: #8f240c;
+} */
+.pacman {
+  width: 300px;
+}
+.animation2-quiz {
+  width: 280px;
+}
+.pacman-col {
+  padding-bottom: 12rem;
 }

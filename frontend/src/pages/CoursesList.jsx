@@ -124,7 +124,7 @@ const CoursesList = () => {
             >
               <Row className="g-0">
                 <Col md={4}>
-                  <Card.Img className="course-image rounded-top" variant="top" src={selectedCourse.image} />
+                  <Card.Img className="courseList-image rounded-top" variant="top" src={selectedCourse.image} />
                 </Col>
                 <Col md={8}>
                   <Card.Body>
