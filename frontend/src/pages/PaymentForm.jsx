@@ -21,11 +21,24 @@ const PaymentForm = () => {
     setAmount(params.course_price);
     setTitle(params.course_title);
 
-    // Simuliamo il controllo se l'utente ha già acquistato il corso (esempio: usando localStorage)
-    const hasPurchasedCourse = localStorage.getItem(`purchased_${params.course_id}`);
-    if (hasPurchasedCourse) {
-      setHasPurchased(true);
-    }
+    const checkPurchase = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:8000/api/check-purchase",
+          { course_id: params.course_id },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        setHasPurchased(response.data.hasPurchased);
+      } catch (error) {
+        console.error("Error checking purchase status:", error);
+      }
+    };
+
+    checkPurchase();
   }, [params]);
 
   const handleSubmit = async (event) => {
@@ -54,8 +67,7 @@ const PaymentForm = () => {
       );
       setMessage(`Pagamento avvenuto con successo: ${response.data.payment.id}`);
       setMostraDettagliCorso(true); // Mostra i dettagli del corso dopo un pagamento riuscito
-      // Salva il flag di acquisto in localStorage
-      localStorage.setItem(`purchased_${courseId}`, true);
+      setHasPurchased(true); // Aggiorna lo stato di acquisto
     } catch (error) {
       setError("Pagamento fallito");
     } finally {
@@ -142,7 +154,7 @@ const PaymentForm = () => {
       {/* Offcanvas per mostrare i dettagli del corso */}
       <Offcanvas show={mostraDettagliCorso} onHide={() => setMostraDettagliCorso(false)}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Dettagli del Corso</Offcanvas.Title>
+          <Offcanvas.Title>Complimenti, hai acquistato il corso!</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <p>
@@ -154,7 +166,7 @@ const PaymentForm = () => {
           <p>
             <strong>Importo:</strong> {amount}
           </p>
-          <Link to={`/lessons/${params.course_id}`} className="btn btn-primary mt-3">
+          <Link to={`/lessons/${params.course_id}`} className="btn btn-success mt-3">
             Vai al corso
           </Link>{" "}
           {/* Link per andare alla pagina del corso */}

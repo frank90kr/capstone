@@ -92,4 +92,16 @@ class PaymentController extends Controller
             'payment' => $payment,
         ]);
     }
+//Verifica se l'utente ha già acquistato il corso
+    public function checkPurchase(Request $request)
+    {
+        $userId = Auth::id();
+        $courseId = $request->input('course_id');
+
+        $hasPurchased = Payment::where('user_id', $userId)
+                                ->where('course_id', $courseId)
+                                ->exists();
+
+        return response()->json(['hasPurchased' => $hasPurchased]);
+    }
 }

@@ -200,9 +200,9 @@ const CoursesList = () => {
               </Button>
             </Link>
           )}
-          <Button className="login-button close border border-none" onClick={handleCloseModal}>
+          {/* <Button className="login-button close border border-none" onClick={handleCloseModal}>
             Chiudi
-          </Button>
+          </Button> */}
         </Modal.Footer>
       </Modal>
     </Container>

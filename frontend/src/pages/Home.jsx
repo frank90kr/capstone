@@ -78,6 +78,20 @@ const Home = () => {
     handleCloseModal(); // Chiusura del modal prima di navigare alla pagina di pagamento
   };
 
+  //Verifica acquisto corso utente
+  const checkCoursePurchase = async (courseId) => {
+    try {
+      const response = await axios.post("/api/check-purchase", { course_id: courseId });
+      const hasPurchased = response.data.hasPurchased;
+      setSelectedCourse((prevCourse) => ({
+        ...prevCourse,
+        purchased: hasPurchased,
+      }));
+    } catch (error) {
+      console.error("Error checking purchase status:", error);
+    }
+  };
+
   return (
     <div className="body">
       <Container>
@@ -244,18 +258,18 @@ const Home = () => {
                     Vai al corso
                   </Button>
                 </Link>
+              ) : selectedCourse?.purchased ? ( // Controlla se il corso è stato acquistato
+                <Button className="login-button border border-none" onClick={handleAccessCourse}>
+                  (acquistato) Vai al corso
+                </Button>
               ) : selectedCourse?.price > 0 ? (
-                <Link to={`/payment/${selectedCourse?.id}/${selectedCourse.title}/${selectedCourse?.price}`}>
-                  <Button className="login-button border border-none" onClick={handleCloseModal}>
-                    Acquista
-                  </Button>
-                </Link>
+                <Button className="login-button border border-none" onClick={handlePurchaseCourse}>
+                  Acquista
+                </Button>
               ) : (
-                <Link to={`/lessons/${selectedCourse?.id}`}>
-                  <Button className="login-button border border-none" onClick={handleCloseModal}>
-                    Vai al corso
-                  </Button>
-                </Link>
+                <Button className="login-button border border-none" onClick={handleAccessCourse}>
+                  Vai al corso
+                </Button>
               )
             ) : (
               <Link to="/login">

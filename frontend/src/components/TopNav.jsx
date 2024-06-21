@@ -1,57 +1,29 @@
-import React, { useState, useEffect } from "react";
-import { Container, Nav, Navbar, Dropdown, Button, Modal, Card } from "react-bootstrap";
+import React from "react";
+import { Container, Nav, Navbar, Dropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./TopNav.css"; // Se necessario per stili personalizzati
+import "./TopNav.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { LOGOUT } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux"; // Importa useDispatch e useSelector da react-redux
 import axios from "axios";
+import { LOGOUT } from "../redux/actions";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { FaUserGraduate } from "react-icons/fa";
 
 const TopNav = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // Ottieni la funzione dispatch per inviare azioni a Redux
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
-  const [showCorsiMenu, setShowCorsiMenu] = useState(false);
-  const [courses, setCourses] = useState([]);
-  const [selectedCourse, setSelectedCourse] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
-    // Funzione per ottenere i dati dei corsi disponibili
-    const fetchCourses = async () => {
-      try {
-        const response = await axios.get("/api/courses"); // Assumi che ci sia un'API che fornisce i dati dei corsi
-        setCourses(response.data); // Imposta i corsi nello stato
-      } catch (error) {
-        console.error("Errore nel recupero dei corsi:", error);
-      }
-    };
-
-    fetchCourses(); // Chiama la funzione di fetch dei corsi all'avvio del componente
-  }, []);
 
   const logout = () => {
     axios
       .post("/logout")
       .then(() => {
-        dispatch({ type: LOGOUT });
+        dispatch({ type: LOGOUT }); // Invia l'azione di logout a Redux
         navigate("/login");
       })
       .catch((error) => {
         console.error("Logout fallito:", error);
       });
-  };
-
-  const handleShowModal = (course) => {
-    setSelectedCourse(course);
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedCourse(null);
   };
 
   return (
@@ -66,24 +38,9 @@ const TopNav = () => {
           <Navbar.Toggle aria-controls="navbarNav" />
           <Navbar.Collapse id="navbarNav">
             <Nav className="justify-content-end flex-grow-1 gap-1 navbar-nav">
-              <Dropdown
-                show={showCorsiMenu}
-                onMouseEnter={() => setShowCorsiMenu(true)}
-                onMouseLeave={() => setShowCorsiMenu(false)}
-                className="dropdown-corsi"
-              >
-                <Nav.Link as={Link} to="/courses-list" className="link-nav mx-lg-2">
-                  Corsi
-                </Nav.Link>
-
-                <Dropdown.Menu>
-                  {courses.map((course) => (
-                    <Dropdown.Item key={course.id} onClick={() => handleShowModal(course)}>
-                      {course.title}
-                    </Dropdown.Item>
-                  ))}
-                </Dropdown.Menu>
-              </Dropdown>
+              <Nav.Link as={Link} to="/courses-list" className="link-nav mx-lg-2">
+                Corsi
+              </Nav.Link>
 
               <Nav.Link className="link-nav mx-lg-2" href="/quiz">
                 Quiz
@@ -125,6 +82,9 @@ const TopNav = () => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
+                      <Dropdown.Item as={Link} to="/purchase-courses">
+                        I Miei Corsi
+                      </Dropdown.Item>
                       <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
@@ -143,47 +103,6 @@ const TopNav = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
-      <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>{selectedCourse?.title}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Card.Img src={selectedCourse?.image} alt={selectedCourse?.title} className="img-fluid mb-3" />
-          <p>{selectedCourse?.description}</p>
-        </Modal.Body>
-
-        <Modal.Footer>
-          {user ? (
-            user.role === "teacher" ? (
-              <Link to={`/lessons/${selectedCourse?.id}`}>
-                <Button className="login-button border border-none" onClick={handleCloseModal}>
-                  Vai al corso
-                </Button>
-              </Link>
-            ) : selectedCourse?.price > 0 ? (
-              <Button className="login-button border border-none" onClick={handleCloseModal}>
-                Acquista
-              </Button>
-            ) : (
-              <Link to={`/lessons/${selectedCourse?.id}`}>
-                <Button className="login-button border border-none" onClick={handleCloseModal}>
-                  Vai al corso
-                </Button>
-              </Link>
-            )
-          ) : (
-            <Link to="/login">
-              <Button className="login-button border border-none" onClick={handleCloseModal}>
-                Effettua l'accesso per visualizzare il corso
-              </Button>
-            </Link>
-          )}
-          <Button className="login-button close border border-none" onClick={handleCloseModal}>
-            Chiudi
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </>
   );
 };
