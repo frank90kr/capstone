@@ -9,6 +9,7 @@ import { MdComputer } from "react-icons/md";
 import section2AnimationData from "../assets/Animation - section2.json";
 import sectionQuizAnimationData from "../assets/pacman.json";
 import sectionQuiz2ndAnimationData from "../assets/2nd quizSection.json";
+import sectionTeacher from "../assets/teacher-home.json";
 // import { GiTeacher } from "react-icons/gi";
 import { FaLaptopHouse } from "react-icons/fa";
 // import { MdQuiz } from "react-icons/md";
@@ -19,17 +20,12 @@ import { useSelector } from "react-redux";
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
-  //Modal
   const [showModal, setShowModal] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
-  const [authenticated, setAuthenticated] = useState(false); // Stato per verificare se l'utente è autenticato
+  const [authenticated, setAuthenticated] = useState(false);
+  const [userHasPurchased, setUserHasPurchased] = useState(false);
   const navigate = useNavigate();
-  const userRole = useSelector((state) => {
-    return state.user?.role;
-  }); // stato per ruolo utente
-  // const userName = useSelector((state) => {
-  //   return state.user?.name;
-  // }); // stato per nome utente
+  const userRole = useSelector((state) => state.user?.role);
 
   useEffect(() => {
     axios
@@ -47,8 +43,6 @@ const Home = () => {
       .catch((error) => {
         console.error("Error checking authentication:", error);
       });
-
-    // Chiamata per ottenere il ruolo dell'utente
   }, []);
 
   const handleAccessCourse = () => {
@@ -56,37 +50,42 @@ const Home = () => {
       navigate(`/lessons/${selectedCourse.id}`);
       handleCloseModal();
     } else {
-      // Mostra un messaggio o avviso che l'utente deve effettuare il login
       setShowModal(true);
     }
   };
 
-  // aprire il modale e impostare il corso selezionato
   const handleOpenModal = (course) => {
     setSelectedCourse(course);
+    checkCoursePurchase(course.id); // Check purchase status when opening the modal
     setShowModal(true);
   };
 
-  // chiudere il modale
   const handleCloseModal = () => {
     setShowModal(false);
     setSelectedCourse(null);
   };
 
   const handlePurchaseCourse = () => {
-    navigate(`/payment/${selectedCourse.id}/${selectedCourse.title}/${selectedCourse.price}`);
-    handleCloseModal(); // Chiusura del modal prima di navigare alla pagina di pagamento
+    if (userHasPurchased) {
+      alert("Hai già acquistato questo corso."); // Notify user if they have already purchased the course
+    } else {
+      navigate(`/payment/${selectedCourse.id}/${selectedCourse.title}/${selectedCourse.price}`);
+    }
+    handleCloseModal();
   };
 
-  //Verifica acquisto corso utente
   const checkCoursePurchase = async (courseId) => {
     try {
-      const response = await axios.post("/api/check-purchase", { course_id: courseId });
-      const hasPurchased = response.data.hasPurchased;
-      setSelectedCourse((prevCourse) => ({
-        ...prevCourse,
-        purchased: hasPurchased,
-      }));
+      const response = await axios.post(
+        "/api/check-purchase",
+        { course_id: courseId },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      setUserHasPurchased(response.data.hasPurchased);
     } catch (error) {
       console.error("Error checking purchase status:", error);
     }
@@ -171,7 +170,7 @@ const Home = () => {
       {/* Section 2 */}
       <Container fluid className="section2 mt-5" data-aos="fade-right" data-aos-duration="2500">
         <Row className="align-items-start justify-content-center">
-          <Col lg={4}>
+          <Col lg={5}>
             <Lottie
               className="animation-section2 mx-auto"
               animationData={section2AnimationData}
@@ -233,7 +232,6 @@ const Home = () => {
                 <Card.Img className="course-image rounded-top" variant="top" src={course.image} />
                 <Card.Body>
                   <Card.Title className="text-center">{course.title}</Card.Title>
-                  {/* <Card.Text>{course.description}</Card.Text> */}
                 </Card.Body>
                 <Card.Footer>
                   <p>Prezzo {course.price}</p>
@@ -252,23 +250,19 @@ const Home = () => {
           </Modal.Body>
           <Modal.Footer>
             {authenticated ? (
-              userRole === "teacher" ? (
+              userRole === "teacher" || selectedCourse?.price === "0.00" ? (
                 <Link to={`/lessons/${selectedCourse?.id}`}>
                   <Button className="login-button border border-none" onClick={handleCloseModal}>
                     Vai al corso
                   </Button>
                 </Link>
-              ) : selectedCourse?.purchased ? ( // Controlla se il corso è stato acquistato
-                <Button className="login-button border border-none" onClick={handleAccessCourse}>
-                  (acquistato) Vai al corso
-                </Button>
-              ) : selectedCourse?.price > 0 ? (
-                <Button className="login-button border border-none" onClick={handlePurchaseCourse}>
-                  Acquista
-                </Button>
-              ) : (
+              ) : userHasPurchased ? (
                 <Button className="login-button border border-none" onClick={handleAccessCourse}>
                   Vai al corso
+                </Button>
+              ) : (
+                <Button className="login-button border border-none" onClick={handlePurchaseCourse}>
+                  Acquista
                 </Button>
               )
             ) : (
@@ -278,6 +272,7 @@ const Home = () => {
                 </Button>
               </Link>
             )}
+
             <Button className="login-button close border border-none" onClick={handleCloseModal}>
               Chiudi
             </Button>
@@ -317,6 +312,28 @@ const Home = () => {
               data-aos-duration="3000"
             />
             {/* <p className="ms-5">Lorem ipsum dolor sit amet.</p> */}
+          </Col>
+        </Row>
+      </Container>
+
+      {/* Section 5 Teacher */}
+      <Container fluid className="section5 mt-5" data-aos="fade-in" data-aos-duration="2500">
+        <Row className="align-items-start justify-content-center">
+          <Col lg={5}>
+            <Lottie
+              className="animation-section5 mx-auto mt-5"
+              animationData={sectionTeacher}
+              loop={true}
+              data-aos="fade-in"
+              data-aos-duration="2000"
+            />
+          </Col>
+          <Col lg={5}>
+            <h2 className="mt-5">Teacher</h2>
+            <p className=" lead">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br /> Nostrum eveniet maiores ab numquam
+              facilis minus Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati, a?
+            </p>
           </Col>
         </Row>
       </Container>

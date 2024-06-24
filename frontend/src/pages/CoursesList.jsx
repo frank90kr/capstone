@@ -11,13 +11,15 @@ import "./CourseList.css";
 const CoursesList = () => {
   const [courses, setCourses] = useState([]);
   const [activeTab, setActiveTab] = useState(""); // Stato per il tab attivo
-  const [showModal, setShowModal] = useState(false);
+
   const [selectedCourse, setSelectedCourse] = useState(null);
-  const [authenticated, setAuthenticated] = useState(false); // Stato per verificare se l'utente è autenticato
+  // const [authenticated, setAuthenticated] = useState(false); // Stato per verificare se l'utente è autenticato
+  // const [coursePurchases, setCoursePurchases] = useState({}); // Stato per tracciare gli acquisti dei corsi
   const navigate = useNavigate();
   const userRole = useSelector((state) => state.user?.role); // Stato per il ruolo dell'utente
 
   useEffect(() => {
+    // Recupera la lista dei corsi
     axios
       .get("/api/courses")
       .then((res) => {
@@ -25,14 +27,28 @@ const CoursesList = () => {
       })
       .catch((err) => console.error("Errore nel recupero dei corsi:", err));
 
-    axios
-      .get("/api/user/authenticated")
-      .then((response) => {
-        setAuthenticated(response.data.authenticated);
-      })
-      .catch((error) => {
-        console.error("Errore nel controllo dell'autenticazione:", error);
-      });
+    // Controlla se l'utente è autenticato
+    // axios
+    //   .get("/api/user/authenticated")
+    //   .then((response) => {
+    //     setAuthenticated(response.data.authenticated);
+    //     if (response.data.authenticated) {
+    //       // Se l'utente è autenticato, recupera lo stato degli acquisti dei corsi
+    //       axios
+    //         .get("/api/user/purchases")
+    //         .then((res) => {
+    //           const purchases = res.data.reduce((acc, purchase) => {
+    //             acc[purchase.course_id] = purchase.purchased;
+    //             return acc;
+    //           }, {});
+    //           setCoursePurchases(purchases);
+    //         })
+    //         .catch((err) => console.error("Errore nel recupero degli acquisti dei corsi:", err));
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.error("Errore nel controllo dell'autenticazione:", error);
+    //   });
 
     // Inizializza AOS al caricamento del componente
     AOS.init({ once: true }); // Imposta once: true per eseguire l'animazione una sola volta
@@ -50,23 +66,20 @@ const CoursesList = () => {
   // Funzione per gestire l'apertura del modale e impostare il corso selezionato
   const handleOpenModal = (course) => {
     setSelectedCourse(course);
-    setShowModal(true);
   };
 
-  // Funzione per chiudere il modale
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedCourse(null);
-  };
+  // // Funzione per gestire l'accesso al corso
+  // const handleAccessCourse = () => {
+  //   if (authenticated) {
+  //     navigate(`/lessons/${selectedCourse.id}`);
+  //     handleCloseModal();
+  //   } else {
+  //     setShowModal(true);
+  //   }
+  // };
 
-  // Funzione per gestire l'accesso al corso
-  const handleAccessCourse = () => {
-    if (authenticated) {
-      navigate(`/lessons/${selectedCourse.id}`);
-      handleCloseModal();
-    } else {
-      setShowModal(true);
-    }
+  const handlePurchaseCourse = () => {
+    navigate(`/payment/${selectedCourse.id}/${selectedCourse.title}/${selectedCourse.price}`);
   };
 
   return (
@@ -75,7 +88,6 @@ const CoursesList = () => {
 
       <Row className="justify-content-center mt-4">
         <Col md={8}>
-          {/* Paragrafo con animazione AOS */}
           <p className="fw-semibold lh-lg" data-aos="fade-down" data-aos-duration="1000">
             Benvenuto nel nostro programma di formazione avanzata per sviluppatori, dove puoi ampliare le tue competenze
             tecniche e accrescere la tua carriera nel campo dello sviluppo software. Offriamo una vasta gamma di corsi
@@ -132,31 +144,6 @@ const CoursesList = () => {
                     <Card.Text>{selectedCourse.description}</Card.Text>
                     <Card.Footer>
                       <p>Prezzo {selectedCourse.price}</p>
-                      {authenticated ? (
-                        userRole === "teacher" ? (
-                          <Link to={`/lessons/${selectedCourse.id}`}>
-                            <Button className="login-button border border-none" onClick={handleCloseModal}>
-                              Vai al corso
-                            </Button>
-                          </Link>
-                        ) : selectedCourse.price > 0 ? (
-                          <Button className="login-button border border-none" onClick={handleCloseModal}>
-                            Acquista
-                          </Button>
-                        ) : (
-                          <Link to={`/lessons/${selectedCourse.id}`}>
-                            <Button className="login-button border border-none" onClick={handleCloseModal}>
-                              Vai al corso
-                            </Button>
-                          </Link>
-                        )
-                      ) : (
-                        <Link to="/login">
-                          <Button className="login-button border border-none" onClick={handleCloseModal}>
-                            Effettua l'accesso per visualizzare il corso
-                          </Button>
-                        </Link>
-                      )}
                     </Card.Footer>
                   </Card.Body>
                 </Col>
@@ -165,46 +152,6 @@ const CoursesList = () => {
           </Col>
         )}
       </Row>
-
-      <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Corso: {selectedCourse?.title}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Card.Img src={selectedCourse?.image} alt={selectedCourse?.title} className="img-fluid mb-3" />
-          <p>{selectedCourse?.description}</p>
-        </Modal.Body>
-        <Modal.Footer>
-          {authenticated ? (
-            userRole === "teacher" ? (
-              <Link to={`/lessons/${selectedCourse?.id}`}>
-                <Button className="login-button border border-none" onClick={handleCloseModal}>
-                  Vai al corso
-                </Button>
-              </Link>
-            ) : selectedCourse?.price > 0 ? (
-              <Button className="login-button border border-none" onClick={handleCloseModal}>
-                Acquista
-              </Button>
-            ) : (
-              <Link to={`/lessons/${selectedCourse?.id}`}>
-                <Button className="login-button border border-none" onClick={handleCloseModal}>
-                  Vai al corso
-                </Button>
-              </Link>
-            )
-          ) : (
-            <Link to="/login">
-              <Button className="login-button border border-none" onClick={handleCloseModal}>
-                Effettua l'accesso per visualizzare il corso
-              </Button>
-            </Link>
-          )}
-          {/* <Button className="login-button close border border-none" onClick={handleCloseModal}>
-            Chiudi
-          </Button> */}
-        </Modal.Footer>
-      </Modal>
     </Container>
   );
 };

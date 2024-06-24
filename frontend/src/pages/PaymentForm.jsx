@@ -11,8 +11,8 @@ const PaymentForm = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [mostraDettagliCorso, setMostraDettagliCorso] = useState(false); // Stato per mostrare i dettagli del corso
-  const [hasPurchased, setHasPurchased] = useState(false); // Stato per controllare se l'utente ha già acquistato il corso
+  const [mostraDettagliCorso, setMostraDettagliCorso] = useState(false);
+  const [hasPurchased, setHasPurchased] = useState(false);
 
   const params = useParams();
 
@@ -45,7 +45,6 @@ const PaymentForm = () => {
     event.preventDefault();
     setLoading(true);
 
-    // Controllo se l'utente ha già acquistato il corso
     if (hasPurchased) {
       setError("Hai già acquistato questo corso.");
       setLoading(false);
@@ -66,8 +65,8 @@ const PaymentForm = () => {
         }
       );
       setMessage(`Pagamento avvenuto con successo: ${response.data.payment.id}`);
-      setMostraDettagliCorso(true); // Mostra i dettagli del corso dopo un pagamento riuscito
-      setHasPurchased(true); // Aggiorna lo stato di acquisto
+      setMostraDettagliCorso(true);
+      setHasPurchased(true);
     } catch (error) {
       setError("Pagamento fallito");
     } finally {
@@ -151,7 +150,6 @@ const PaymentForm = () => {
         </Col>
       </Row>
 
-      {/* Offcanvas per mostrare i dettagli del corso */}
       <Offcanvas show={mostraDettagliCorso} onHide={() => setMostraDettagliCorso(false)}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Complimenti, hai acquistato il corso!</Offcanvas.Title>
@@ -169,7 +167,6 @@ const PaymentForm = () => {
           <Link to={`/lessons/${params.course_id}`} className="btn btn-success mt-3">
             Vai al corso
           </Link>{" "}
-          {/* Link per andare alla pagina del corso */}
           <Button variant="secondary" className="mt-3" onClick={() => setMostraDettagliCorso(false)}>
             Chiudi
           </Button>

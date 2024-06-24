@@ -134,9 +134,12 @@
 /* Section2 */
 .section2 {
   background-color: #9bd1e5;
+  height: 22rem;
+  padding-left: 15%;
+  padding-right: 15%;
 }
 .animation-section2 {
-  width: 22rem;
+  width: 20rem;
 }
 
 /* Section Card's Course */
@@ -177,7 +180,7 @@
 
 /* Section4 Quiz */
 .container-quiz-home {
-  background-color: #0b032d;
+  background-color: #1b264f;
   height: 22rem;
   padding-left: 15%;
   padding-right: 15%;
@@ -196,4 +199,14 @@
 }
 .pacman-col {
   padding-bottom: 12rem;
+}
+/* Section 5 Teacher */
+.section5 {
+  background-color: #f9a03f;
+  height: 22rem;
+  padding-left: 15%;
+  padding-right: 15%;
+}
+.animation-section5 {
+  width: 25rem;
 }

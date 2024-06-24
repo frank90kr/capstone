@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Container, Card, Col, Row } from "react-bootstrap";
+import { Container, Card, Col, Row, ListGroup } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import "./PurchasedCourses.css";
 
 const PurchasedCourses = () => {
   const [purchasedCourses, setPurchasedCourses] = useState([]);
-  const userRole = useSelector((state) => state.user?.role);
+
+  const userName = useSelector((state) => {
+    return state.user?.name;
+  }); // stato per nome utente
+  const userEmail = useSelector((state) => {
+    return state.user?.email;
+  }); // stato per email utente
+  const userRole = useSelector((state) => {
+    return state.user?.role;
+  }); // stato per ruolo utente
 
   useEffect(() => {
     axios
@@ -21,8 +30,20 @@ const PurchasedCourses = () => {
   }, []);
 
   return (
-    <Container fluid>
-      <h2 className="text-center title  mb-4">I Tuoi Corsi Acquistati</h2>
+    <Container>
+      <h1 className="text-center title">Bentornato {userName}!</h1>
+      <h2 className="text-center mt-5">Corsi Acquistati</h2>
+
+      <Row className="flex-column align-items-center">
+        <Col>
+          <p className="fw-bold">Profilo utente</p>
+          <ListGroup.Item>username: {userName}</ListGroup.Item>
+          <hr className="w-25" />
+          <ListGroup.Item>e-mail: {userEmail}</ListGroup.Item>
+          <hr className="w-25" />
+          <ListGroup.Item>role: {userRole}</ListGroup.Item>
+        </Col>
+      </Row>
 
       <Row className="justify-content-center">
         {purchasedCourses.length > 0 ? (

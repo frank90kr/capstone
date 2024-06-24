@@ -54,21 +54,31 @@ const TopNav = () => {
               <Nav.Link className="link-nav mx-lg-2" href="#action4">
                 Contact
               </Nav.Link>
+              {user && (
+                <>
+                  {user.role === "teacher" ? (
+                    <Nav.Link as={Link} to="/teacher" className="link-nav mx-lg-2">
+                      <MdAdminPanelSettings className="me-2" />
+                      Gestione Corsi
+                    </Nav.Link>
+                  ) : (
+                    <Nav.Link as={Link} to="/purchase-courses" className="link-nav mx-lg-2">
+                      I Miei Corsi
+                    </Nav.Link>
+                  )}
+                </>
+              )}
             </Nav>
 
             <Nav className="justify-content-end flex-grow-1 gap-1 navbar-nav">
               {user && user.role === "teacher" ? (
                 <div className="d-flex align-items-center">
-                  <MdAdminPanelSettings className="me-2" />
                   <Dropdown>
                     <Dropdown.Toggle className="user-login text-decoration-none" variant="link" id="dropdown-basic">
                       {user.name}
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                      <Dropdown.Item as={Link} to="/teacher">
-                        Gestione Corsi
-                      </Dropdown.Item>
                       <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
@@ -82,9 +92,6 @@ const TopNav = () => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                      <Dropdown.Item as={Link} to="/purchase-courses">
-                        I Miei Corsi
-                      </Dropdown.Item>
                       <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
