@@ -1,28 +1,75 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { Accordion, Row, Container, Col } from "react-bootstrap";
-// import YouTube from "react-youtube";
+import { Accordion, Row, Container, Col, Form, Button } from "react-bootstrap";
+import { BsStarFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
+import { format } from "date-fns"; // Importa la funzione di formattazione data
 import "./Lessons.css";
 
 const Lessons = () => {
   const [lessons, setLessons] = useState([]);
   const [course, setCourse] = useState({});
+  const [rating, setRating] = useState(0);
+  const [review, setReview] = useState("");
+  const [reviews, setReviews] = useState([]);
   const { id } = useParams();
+
+  const userName = useSelector((state) => state.user?.name); // Stato per nome utente
+  const userRole = useSelector((state) => state.user?.role); // Stato per ruolo utente
 
   useEffect(() => {
     // Ottieni i dettagli del corso
     axios
       .get(`/api/course/${id}`)
       .then((res) => {
+        console.log(res.data);
         setCourse(res.data);
         setLessons(res.data.lessons);
       })
       .catch((err) => console.error(err));
   }, [id]);
 
-  // // Estrai l'ID del video da course.video_url
-  // const videoId = course.video_url ? course.video_url.split("v=")[1] : null;
+  useEffect(() => {
+    // Ottieni le recensioni
+    axios
+      .get(`/api/courses/${id}/reviews`)
+      .then((res) => {
+        console.log(res.data);
+        setReviews(res.data || []);
+      })
+      .catch((err) => console.error(err));
+  }, [id]);
+
+  const handleRatingChange = (value) => {
+    setRating(value);
+  };
+
+  const handleReviewChange = (e) => {
+    setReview(e.target.value);
+  };
+
+  const handleSubmitReview = () => {
+    // invio della recensione al backend
+    const reviewData = {
+      rating: rating,
+      review: review,
+      courseId: id,
+    };
+
+    // Invio dati
+    axios
+      .post(`/api/courses/${id}/reviews`, reviewData)
+      .then((res) => {
+        console.log("Recensione inviata con successo:", res.data);
+        setReviews([...reviews, { ...res.data, user: { name: userName } }]); // Aggiorna le recensioni con la nuova recensione
+        setRating(0); // Resetta la valutazione
+        setReview(""); // Resetta la recensione
+      })
+      .catch((err) => {
+        console.error("Errore durante l'invio della recensione:", err);
+      });
+  };
 
   return (
     <Container>
@@ -33,20 +80,6 @@ const Lessons = () => {
           alt={course.title}
         />
       </Row>
-      {/* <Row className="mt-4 justify-content-center">
-        <Col xs={10} sm={10} lg={8}>
-          <div className="video-container mt-3">
-            {videoId && (
-              <YouTube
-                videoId={videoId} // Passa solo l'ID del video
-                className="embed-responsive-item"
-                containerClassName="embed-responsive embed-responsive-16by9"
-                opts={{ playerVars: { autoplay: 0 } }}
-              />
-            )}
-          </div>
-        </Col>
-      </Row> */}
       <div className="container mt-4">
         <h1 className="text-center mb-4">Lezioni del Corso</h1>
         <Row className="justify-content-center">
@@ -62,11 +95,59 @@ const Lessons = () => {
                   </Accordion.Header>
                   <Accordion.Body>
                     <p className="lh-lg">{lesson.content}</p>
-                    <small>corso Id{lesson.id}</small>
+                    <small>Corso ID: {lesson.id}</small>
                   </Accordion.Body>
                 </Accordion.Item>
               ))}
             </Accordion>
+            <div className="mt-5">
+              <h2 className="mb-3">Lascia un feedback</h2>
+              <Form>
+                <Form.Group className="mb-3">
+                  <Form.Label>Valutazione</Form.Label>
+                  <div className="rating-stars">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <BsStarFill
+                        key={star}
+                        className={`star ${rating >= star ? "star-filled" : ""}`}
+                        onClick={() => handleRatingChange(star)}
+                      />
+                    ))}
+                  </div>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Recensione</Form.Label>
+                  <Form.Control as="textarea" rows={3} value={review} onChange={handleReviewChange} />
+                </Form.Group>
+                <Button variant="primary" onClick={handleSubmitReview}>
+                  Invia
+                </Button>
+              </Form>
+              <div className="mt-4">
+                <h3>Recensioni</h3>
+                {reviews.length > 0 ? (
+                  reviews.map((rev, index) => (
+                    <div key={index} className="review mt-2">
+                      <div className="rating-stars">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <BsStarFill key={star} className={`star ${rev.rating >= star ? "star-filled" : ""}`} />
+                        ))}
+                      </div>
+                      <p>{rev.review}</p>
+                      <div className="d-flex flex-column">
+                        <small>da: {rev.user.name}</small>
+                        <small>Ruolo: {userRole}</small>
+                        <small className="ms-auto">
+                          Creata il: {format(new Date(rev.created_at), "dd/MM/yyyy HH:mm:ss")}
+                        </small>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p>Nessuna recensione disponibile.</p>
+                )}
+              </div>
+            </div>
           </Col>
         </Row>
       </div>

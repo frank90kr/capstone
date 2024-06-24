@@ -18,3 +18,18 @@
   width: 100%;
   height: 90%;
 }
+
+.rating-stars {
+  display: flex;
+  gap: 5px;
+}
+
+.star {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: gray;
+}
+
+.star-filled {
+  color: gold;
+}

@@ -9,6 +9,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UploadImageController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PurchasedCourseController; // Assicurati di importare il controller
+use App\Http\Controllers\ReviewController;
 
 // Rotte per verificare lo stato di autenticazione dell'utente
 Route::middleware('auth:sanctum')->get('/user/authenticated', [UserController::class, 'checkAuthentication']);
@@ -33,6 +34,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Rotta per ottenere i corsi acquistati dall'utente
     Route::get('/user/purchased-courses', [PurchasedCourseController::class, 'index']);
+    //Rotta per aggiungere una recensione
+    Route::post('/courses/{courseId}/reviews', [ReviewController::class, 'store']);
+    Route::get('/courses/{courseId}/reviews', [ReviewController::class, 'index']);
 });
 
 // Rotta per l'elenco dei corsi (pubblica, non richiede autenticazione)
