@@ -16,6 +16,7 @@ const Teacher = () => {
   const [descriptionModal, setDescriptionModal] = useState("");
   const [priceModal, setPriceModal] = useState("");
   const [courseImage, setCourseImage] = useState(null);
+  const [courseVideoUrl, setCourseVideoUrl] = useState("");
 
   const [lessonTitle, setLessonTitle] = useState("");
   const [lessonContent, setLessonContent] = useState("");
@@ -62,6 +63,9 @@ const Teacher = () => {
     if (courseImage) {
       body.append("course_img", courseImage);
     }
+    if (courseVideoUrl) {
+      body.append("youtube_video", courseVideoUrl);
+    }
 
     axios
       .post("/api/courses", body)
@@ -75,6 +79,7 @@ const Teacher = () => {
         setDescription("");
         setPrice("");
         setCourseImage(null);
+        setCourseVideoUrl("");
       })
       .catch((error) => {
         console.error("Errore durante la creazione del corso:", error);
@@ -254,11 +259,13 @@ const Teacher = () => {
                   <td className="align-middle">{course.title}</td>
                   <td className="align-middle">{course.description}</td>
                   <td className="align-middle">${course.price}</td>
-                  <td className="align-middle">{userName}</td>
+                  <td className="align-middle">
+                    {course.creator_name} {/* Mostra il nome del creatore */}
+                  </td>
                   <td className="align-middle">
                     <div className="d-flex flex-column align-items-center">
                       <Button
-                        className="login-button border border-none text-white btn-info"
+                        className="login-button border border-none text-white btn-info w-100"
                         size="sm"
                         onClick={() => {
                           setSelectedCourse(course);
@@ -381,6 +388,16 @@ const Teacher = () => {
         <Form.Group controlId="courseImage">
           <Form.Label>Immagine del Corso</Form.Label>
           <Form.Control type="file" onChange={(e) => setCourseImage(e.target.files[0])} />
+        </Form.Group>
+
+        <Form.Group controlId="courseVideo">
+          <Form.Label>Video del corso (URL di YouTube)</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Inserisci l'URL del video di YouTube"
+            value={courseVideoUrl}
+            onChange={(e) => setCourseVideoUrl(e.target.value)}
+          />
         </Form.Group>
 
         <div className="text-center">

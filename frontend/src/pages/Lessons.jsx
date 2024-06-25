@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { Accordion, Row, Container, Col, Form, Button } from "react-bootstrap";
+import { Accordion, Row, Container, Col, Form, Button, Alert } from "react-bootstrap";
 import { BsStarFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { format } from "date-fns"; // Importa la funzione di formattazione data
+import YouTube from "react-youtube"; // Importa il componente YouTube
 import "./Lessons.css";
 
 const Lessons = () => {
@@ -13,6 +14,8 @@ const Lessons = () => {
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
   const [reviews, setReviews] = useState([]);
+  const [showAlert, setShowAlert] = useState(false); // Stato per mostrare l'Alert
+  const [alertMessage, setAlertMessage] = useState(""); // Messaggio da mostrare nell'Alert
   const { id } = useParams();
 
   const userName = useSelector((state) => state.user?.name); // Stato per nome utente
@@ -65,11 +68,24 @@ const Lessons = () => {
         setReviews([...reviews, { ...res.data, user: { name: userName } }]); // Aggiorna le recensioni con la nuova recensione
         setRating(0); // Resetta la valutazione
         setReview(""); // Resetta la recensione
+        setShowAlert(true); // Mostra l'Alert di successo
+        setAlertMessage("Recensione inserita con successo!"); // Imposta il messaggio dell'Alert
       })
       .catch((err) => {
         console.error("Errore durante l'invio della recensione:", err);
       });
   };
+
+  // Funzione per estrarre l'ID del video da un URL di YouTube
+  const getYoutubeVideoId = (url) => {
+    if (!url) return null;
+    const regex =
+      /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+  };
+
+  const youtubeVideoId = getYoutubeVideoId(course.youtube_video);
 
   return (
     <Container>
@@ -80,8 +96,14 @@ const Lessons = () => {
           alt={course.title}
         />
       </Row>
+      <Row className="mt-5">
+        <Col md={12}>
+          {youtubeVideoId && <YouTube videoId={youtubeVideoId} opts={{ width: "100%", height: "450px" }} />}
+        </Col>
+      </Row>
       <div className="container mt-4">
         <h1 className="text-center mb-4">Lezioni del Corso</h1>
+        <p className="text-center mb-4">Creato da: {course.creator_name}</p> {/* Mostra il nome del creatore */}
         <Row className="justify-content-center">
           <Col xs={12} md={10}>
             <Accordion flush className="mt-5">
@@ -104,7 +126,7 @@ const Lessons = () => {
               <h2 className="mb-3">Lascia un feedback</h2>
               <Form>
                 <Form.Group className="mb-3">
-                  <Form.Label>Valutazione</Form.Label>
+                  <Form.Label>Rating</Form.Label>
                   <div className="rating-stars">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <BsStarFill
@@ -114,12 +136,18 @@ const Lessons = () => {
                       />
                     ))}
                   </div>
+                  {/* Alert per mostrare il messaggio di successo */}
+                  {showAlert && (
+                    <Alert variant="success" onClose={() => setShowAlert(false)} dismissible className="mt-4">
+                      {alertMessage}
+                    </Alert>
+                  )}
                 </Form.Group>
                 <Form.Group className="mb-3">
                   <Form.Label>Recensione</Form.Label>
                   <Form.Control as="textarea" rows={3} value={review} onChange={handleReviewChange} />
                 </Form.Group>
-                <Button variant="primary" onClick={handleSubmitReview}>
+                <Button className="login-button border border-none text-white" onClick={handleSubmitReview}>
                   Invia
                 </Button>
               </Form>
@@ -133,13 +161,16 @@ const Lessons = () => {
                           <BsStarFill key={star} className={`star ${rev.rating >= star ? "star-filled" : ""}`} />
                         ))}
                       </div>
-                      <p>{rev.review}</p>
+                      <p className="mt-3">{rev.review}</p>
+                      <hr></hr>
                       <div className="d-flex flex-column">
-                        <small>da: {rev.user.name}</small>
-                        <small>Ruolo: {userRole}</small>
-                        <small className="ms-auto">
-                          Creata il: {format(new Date(rev.created_at), "dd/MM/yyyy HH:mm:ss")}
+                        <small>
+                          da: <span className="fw-semibold">{rev.user.name}</span>
                         </small>
+                        <small>
+                          Ruolo: <span className="fw-semibold"> {userRole}</span>{" "}
+                        </small>
+                        <small className="ms-auto">{format(new Date(rev.created_at), "dd/MM/yyyy HH:mm:ss")}</small>
                       </div>
                     </div>
                   ))

@@ -18,8 +18,11 @@ return new class extends Migration
             $table->decimal('price', 8, 2)->nullable();
             $table->unsignedBigInteger('creator_id');
             $table->foreign('creator_id')->references('id')->on('users');
-            $table->string('video_url')->nullable();
+            $table->string('creator_name');
+            
+           
             $table->string('image')->nullable();
+            $table->string('youtube_video')->nullable(); 
             // $table->dateTime('created_at')->nullable(); 
             // $table->dateTime('updated_at')->nullable(); 
             $table->timestamps();

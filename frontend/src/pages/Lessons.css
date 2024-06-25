@@ -29,6 +29,11 @@
   font-size: 1.5rem;
   color: gray;
 }
+.star:hover {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: gold;
+}
 
 .star-filled {
   color: gold;

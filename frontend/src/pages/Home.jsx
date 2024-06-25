@@ -234,6 +234,8 @@ const Home = () => {
                   <Card.Title className="text-center">{course.title}</Card.Title>
                 </Card.Body>
                 <Card.Footer>
+                  <p className="text-center mb-4">Creato da: {course.creator_name}</p>{" "}
+                  {/* Mostra il nome del creatore */}
                   <p>Prezzo {course.price}</p>
                 </Card.Footer>
               </Card>

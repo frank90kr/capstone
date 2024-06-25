@@ -54,16 +54,26 @@ class CourseController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric',
             'course_img' => 'nullable|image|max:2048',
+            'youtube_video' => 'nullable|string'
+           
         ]);
 
         if ($request->hasFile('course_img')) {
             $imagePath = $request->file('course_img')->store('course_images', 'public');
             $validatedData['image'] = "storage/".$imagePath;
         }
-
+        
+        $creatorName = Auth::user()->name;
+              
         $course = new Course();
         $course->fill($validatedData);
+        $course->creator_name = $creatorName;
         $course->creator_id = Auth::id(); 
+
+        // Se è stato fornito un video YouTube, salva il link completo
+        if ($request->has('youtube_video')) {
+            $course->youtube_video = $request->youtube_video;
+        }
 
         $course->save();
 
@@ -77,6 +87,7 @@ class CourseController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric',
+            
         ]);
 
         // Trova il corso da aggiornare
@@ -136,4 +147,6 @@ class CourseController extends Controller
 
         return response()->json(['message' => 'Course deleted successfully']);
     }
+
+    
 }

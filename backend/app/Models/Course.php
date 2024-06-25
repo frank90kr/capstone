@@ -18,7 +18,9 @@ class Course extends Model
         'description', 
         'price', 
         'creator_id',
+        'creator_name',
         'image',
+        'youtube_video'
     ];
 
     //Creatore del corso
@@ -42,4 +44,6 @@ class Course extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    
 }
