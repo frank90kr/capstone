@@ -211,3 +211,29 @@
 .animation-section5 {
   width: 25rem;
 }
+
+/* Section 6 Feedback */
+.section6 {
+  background-color: #e3f2fd;
+}
+.google-ceo {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.quote-icon {
+  font-size: 2rem;
+  color: #4070f4;
+  margin-bottom: 1rem;
+}
+.custom-arrow {
+  font-size: 2.5rem;
+  color: #4070f4;
+}
+.custom-paragraph {
+  padding-left: 110px;
+  padding-right: 110px;
+  font-style: italic;
+}

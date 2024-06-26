@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Lottie from "lottie-react";
 import animationData from "../assets/Animation - hero-test.json";
 import "./Home.css";
-import { Button, Card, Col, Container, Modal, Nav, Row } from "react-bootstrap";
+import { Button, Card, Carousel, Col, Container, Modal, Nav, Row } from "react-bootstrap";
 import { CgFileDocument } from "react-icons/cg";
 import { PiVideoLight } from "react-icons/pi";
 import { MdComputer } from "react-icons/md";
@@ -17,6 +17,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { FaQuoteLeft } from "react-icons/fa6";
+import { IoIosArrowDropleftCircle } from "react-icons/io";
+import { IoIosArrowDroprightCircle } from "react-icons/io";
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
@@ -336,6 +339,77 @@ const Home = () => {
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br /> Nostrum eveniet maiores ab numquam
               facilis minus Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati, a?
             </p>
+          </Col>
+        </Row>
+      </Container>
+
+      <Container fluid className="section6 mt-5">
+        <Row className="justify-content-center">
+          <h2 className="text-center mt-1">Testimonials</h2>
+          <Col md={10}>
+            <Carousel
+              fade
+              interval={null}
+              indicators={false}
+              prevIcon={<IoIosArrowDropleftCircle className="custom-arrow prev-arrow" />}
+              nextIcon={<IoIosArrowDroprightCircle className="custom-arrow next-arrow" />}
+            >
+              <Carousel.Item className="text-center mt-4">
+                <img src="/home_img/google-Ceo.jpg" alt="Sundar Pichai" className="google-ceo" />
+                <h5 className="mt-3 fw-semibold">Sundar Pichai</h5>
+                <h6 className="mt-3 fw-semibold text-secondary">Google CEO</h6>
+                <FaQuoteLeft className="quote-icon mt-2" />
+                <p className=" custom-paragraph">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo saepe ipsum sequi officia quos nihil
+                  tempora asperiores libero maxime incidunt? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Reiciendis, necessitatibus.
+                </p>
+              </Carousel.Item>
+              <Carousel.Item className="text-center mt-4">
+                <img src="/home_img/udemy-Admin.jpg" alt="Greg Brown" className="udemy-admin google-ceo" />
+                <h5 className="mt-3 fw-semibold">Greg Brown</h5>
+                <h6 className="mt-3 fw-semibold text-secondary">Udemy's Chief Executive</h6>
+                <FaQuoteLeft className="quote-icon mt-2" />
+                <p className=" custom-paragraph">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo saepe ipsum sequi officia quos nihil
+                  tempora asperiores libero maxime incidunt? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Reiciendis, necessitatibus.
+                </p>
+              </Carousel.Item>
+              <Carousel.Item className="text-center mt-4">
+                <img src="/home_img/meta-zuckerberg.jpg" alt="Greg Brown" className="udemy-admin google-ceo" />
+                <h5 className="mt-3 fw-semibold">Mark Zuckerberg</h5>
+                <h6 className="mt-3 fw-semibold text-secondary">Founder and CEO at Meta</h6>
+                <FaQuoteLeft className="quote-icon mt-2" />
+                <p className=" custom-paragraph">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo saepe ipsum sequi officia quos nihil
+                  tempora asperiores libero maxime incidunt? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Reiciendis, necessitatibus.
+                </p>
+              </Carousel.Item>
+              <Carousel.Item className="text-center mt-4">
+                <img src="/home_img/laravel-founder.webp" alt="Greg Brown" className="udemy-admin google-ceo" />
+                <h5 className="mt-3 fw-semibold">Taylor Otwell</h5>
+                <h6 className="mt-3 fw-semibold text-secondary">Teacher and Laravel founder</h6>
+                <FaQuoteLeft className="quote-icon mt-2" />
+                <p className=" custom-paragraph">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo saepe ipsum sequi officia quos nihil
+                  tempora asperiores libero maxime incidunt? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Reiciendis, necessitatibus.
+                </p>
+              </Carousel.Item>
+              <Carousel.Item className="text-center mt-4">
+                <img src="/home_img/women-student.webp" alt="Greg Brown" className="udemy-admin google-ceo" />
+                <h5 className="mt-3 fw-semibold">Cara Collins</h5>
+                <h6 className="mt-3 fw-semibold text-secondary">Student</h6>
+                <FaQuoteLeft className="quote-icon mt-2" />
+                <p className=" custom-paragraph">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo saepe ipsum sequi officia quos nihil
+                  tempora asperiores libero maxime incidunt? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Reiciendis, necessitatibus.
+                </p>
+              </Carousel.Item>
+            </Carousel>
           </Col>
         </Row>
       </Container>
