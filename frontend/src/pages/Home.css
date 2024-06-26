@@ -149,8 +149,13 @@
 }
 
 .course-image {
-  height: 200px;
+  height: 150px;
   object-fit: cover;
+}
+
+.custom-arrow-cards {
+  font-size: 3rem;
+  color: #009970;
 }
 /* Effetto hover su card */
 .card {
@@ -159,17 +164,17 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 350px;
+  width: 320px;
 }
 
 .card-body {
-  padding: 20px;
-  flex: 1;
+  padding: 15px;
+  /* flex: 1; */
 }
 
 .card:hover {
   border-color: #ddd; /* Opzionale, se si desidera mantenere lo stesso colore del bordo */
-  box-shadow: 0px 0px 10px 5px rgba(0, 189, 120, 0.69);
+  box-shadow: 0px 0px 10px 8px rgba(0, 189, 120, 0.382);
 }
 
 .close {
@@ -233,7 +238,27 @@
   color: #4070f4;
 }
 .custom-paragraph {
-  padding-left: 110px;
-  padding-right: 110px;
+  padding-left: 120px;
+  padding-right: 120px;
   font-style: italic;
+}
+
+/* Footer */
+
+.footer {
+  background: #11003a;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding-left: 15%;
+  padding-right: 15%;
+  color: white;
+}
+.footer-link {
+  text-decoration: none;
+  color: rgb(220, 220, 220);
+}
+.footer-link:hover {
+  color: rgba(255, 255, 255, 0.877);
+  text-decoration: underline;
+  transition: 0.5s color;
 }
