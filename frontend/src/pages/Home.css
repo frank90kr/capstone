@@ -41,35 +41,41 @@
 .div-hero-animation {
   margin-top: 4rem;
 }
+@media (max-width: 1400px) {
+  .hero-animation {
+    width: 30rem;
+  }
+}
 @media (max-width: 1200px) {
-  .div-hero-animation {
-    display: flex;
-    justify-content: center;
-  }
-}
-@media (min-width: 768px) and (max-width: 1200px) {
-  .div-hero-animation {
-    width: 22rem;
-    margin-top: 2rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .title-margin {
-    margin-top: 3rem;
-  }
-
-  .hero-text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .p-hero {
-    text-align: center;
-  }
-
   .hero-animation {
     width: 20rem;
+  }
+}
+@media (max-width: 991px) {
+  .hero-animation {
+    width: 16rem;
+  }
+}
+@media (max-width: 993px) {
+  .title-hero {
+    font-size: 30px;
+  }
+}
+@media (max-width: 768px) {
+  .title-hero {
+    font-size: 25px;
+  }
+  .hero-body {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+.btn-hero {
+  width: 250px;
+}
+@media (max-width: 993px) {
+  .btn-hero {
+    width: 180px;
   }
 }
 
@@ -90,6 +96,12 @@
 .under-hero {
   margin-top: 8.4rem;
 }
+@media (max-width: 768px) {
+  .under-hero {
+    margin-top: 4rem;
+  }
+}
+
 .under-hero {
   background: rgb(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
@@ -98,6 +110,18 @@
   padding-left: 15%;
   padding-right: 15%;
 }
+@media (max-width: 1400px) {
+  .under-hero {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+/* @media (max-width: 900px) {
+  .under-hero {
+    padding-left: 0;
+    padding-right: 0;
+  }
+} */
 .div-under-hero {
   height: 10rem;
 }
@@ -121,11 +145,8 @@
     width: 5rem;
     height: 4rem;
   }
-  .hero-animation {
-    width: 19rem;
-  }
 }
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .div-hero-animation {
     display: flex;
     justify-content: center;
@@ -134,7 +155,7 @@
 /* Section2 */
 .section2 {
   background-color: #9bd1e5;
-  height: 22rem;
+  height: 23rem;
   padding-left: 15%;
   padding-right: 15%;
 }
@@ -142,39 +163,60 @@
   width: 20rem;
   filter: drop-shadow(20px 5px 9px #4d4d4db7);
 }
-
-/* Section Card's Course */
-.group-cards {
-  filter: drop-shadow(0 0 0.75rem rgb(178, 178, 178));
+@media (max-width: 1095px) {
+  .animation-section2 {
+    padding-right: 4.8rem;
+  }
+}
+@media (max-width: 950px) {
+  .header-section2-icon {
+    display: flex;
+    margin-top: 1rem;
+  }
 }
 
+@media (max-width: 731px) {
+  .icon1 {
+    margin-bottom: -2rem;
+  }
+}
+@media (max-width: 768px) {
+  .section2 {
+    height: 38rem;
+  }
+}
+
+/* Section Card's Course */
+.card {
+  cursor: pointer;
+}
 .course-image {
-  height: 150px;
-  object-fit: cover;
+  /* height: 160px; */
+}
+
+.carousel-arrows-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: -40px;
+}
+
+.arrow-container {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 .custom-arrow-cards {
-  font-size: 3rem;
-  color: #009970;
+  font-size: 3rem; /* Dimensione dell'icona */
+  color: rgb(62, 62, 62); /* Colore dell'icona */
 }
-/* Effetto hover su card */
-.card {
-  cursor: pointer;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  width: 320px;
-}
-
-.card-body {
-  padding: 15px;
-  /* flex: 1; */
-}
-
-.card:hover {
-  border-color: #ddd; /* Opzionale, se si desidera mantenere lo stesso colore del bordo */
-  box-shadow: 0px 0px 10px 8px rgba(0, 189, 120, 0.382);
+.custom-arrow-cards:hover {
+  color: rgb(99, 99, 99);
 }
 
 .close {
@@ -187,29 +229,31 @@
 /* Section4 Quiz */
 .container-quiz-home {
   background-color: #1b264f;
-  height: 22rem;
+  height: 23rem;
   padding-left: 15%;
   padding-right: 15%;
+  display: flex;
+  flex-direction: column;
 }
-/* .quiz-home-btn {
-  background-color: #4f6272;
-}
-.quiz-home-btn:hover {
-  background-color: #8f240c;
-} */
-.pacman {
-  width: 300px;
-}
+
 .animation2-quiz {
-  width: 280px;
+  width: 340px;
 }
-.pacman-col {
-  padding-bottom: 12rem;
+@media (max-width: 992px) {
+  .animation2-quiz {
+    width: 250px;
+  }
 }
+@media (max-width: 992px) {
+  .animation2-quiz {
+    display: none;
+  }
+}
+
 /* Section 5 Teacher */
 .section5 {
   background-color: #f9a03f;
-  height: 22rem;
+  height: 23rem;
   padding-left: 15%;
   padding-right: 15%;
 }

@@ -36,8 +36,8 @@ const TopNav = () => {
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarNav" />
-          <Navbar.Collapse id="navbarNav">
-            <Nav className="justify-content-end flex-grow-1 gap-1 navbar-nav">
+          <Navbar.Collapse id="navbarNav" className="justify-content-end">
+            <Nav className="navbar-nav ms-auto gap-1">
               <Nav.Link as={Link} to="/courses-list" className="link-nav mx-lg-2">
                 Corsi
               </Nav.Link>
@@ -70,7 +70,7 @@ const TopNav = () => {
               )}
             </Nav>
 
-            <Nav className="justify-content-end flex-grow-1 gap-1 navbar-nav">
+            <Nav className="navbar-nav ms-auto gap-1">
               {user && user.role === "teacher" ? (
                 <div className="d-flex align-items-center">
                   <Dropdown>
@@ -98,7 +98,7 @@ const TopNav = () => {
                 </div>
               ) : (
                 <>
-                  <Nav.Link className="login-button text-white px-4 mt-1" href="/login">
+                  <Nav.Link className="login-button text-center text-white px-4 mt-1 mx-auto" href="/login">
                     Login
                   </Nav.Link>
                   <Nav.Link className="px-4" href="/register">

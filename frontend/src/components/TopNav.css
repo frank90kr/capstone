@@ -4,6 +4,12 @@
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
+
+@media (max-width: 992px) {
+  .navbar-nav {
+    text-align: center; /* Assicura che i link siano allineati a destra in modalità mobile */
+  }
+}
 /* Logo */
 .navbar-brand {
   text-decoration: none;
@@ -26,6 +32,12 @@
 
 .login-button:hover {
   background-color: #00b383;
+}
+@media (max-width: 992px) {
+  .login-button {
+    width: 100px;
+    padding: 8px 20px;
+  }
 }
 
 .user-login {
@@ -59,18 +71,19 @@
   color: #000;
 }
 
-/* @media (min-width: 991px) { */
-.link-nav::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background-color: #009970;
-  visibility: hidden;
-  transition: 0.2s ease-in-out;
+@media (min-width: 991px) {
+  .link-nav::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #009970;
+    visibility: hidden;
+    transition: 0.2s ease-in-out;
+  }
 }
 
 .link-nav:hover::before,
