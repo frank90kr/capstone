@@ -37,10 +37,27 @@
 
 .hero-animation {
   width: 40rem;
+  transition: transform 0.3s ease-in-out; /* Transizione fluida */
+  border: none; /* Assicurati che non ci sia alcun bordo */
+  filter: drop-shadow(0px 5px 24px #28282826);
+  perspective: 1000px; /* Aggiungi profondità 3D */
 }
+
 .div-hero-animation {
   margin-top: 4rem;
+  border: none;
 }
+.div-hero-animation:hover {
+  border: none;
+}
+.div-hero-animation:focus {
+  outline: none; /* Rimuovi eventuali bordi di focus */
+}
+
+.div-hero-animation:active {
+  border: none; /* Assicurati che non ci sia alcun bordo durante l'attivazione */
+}
+
 @media (max-width: 1400px) {
   .hero-animation {
     width: 30rem;
@@ -105,6 +122,7 @@
 /* Under hero */
 .under-hero {
   margin-top: 8.4rem;
+  padding: 8px;
 }
 @media (max-width: 768px) {
   .under-hero {

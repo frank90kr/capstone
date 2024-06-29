@@ -13,13 +13,14 @@ import sectionTeacher from "../assets/teacher-home.json";
 // import { GiTeacher } from "react-icons/gi";
 import { FaLaptopHouse } from "react-icons/fa";
 // import { MdQuiz } from "react-icons/md";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaQuoteLeft } from "react-icons/fa6";
 import { IoIosArrowBack, IoIosArrowDropleftCircle, IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
+import Tilt from "react-parallax-tilt";
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
@@ -115,6 +116,7 @@ const Home = () => {
       return prevIndex + 1;
     });
   };
+
   return (
     <div className="body">
       <Container>
@@ -141,11 +143,25 @@ const Home = () => {
           </Col>
           <Col>
             <div className="div-hero-animation">
-              <Lottie
-                className="hero-animation img-fluid px-3 py-2 ms-lg-5"
-                animationData={animationData}
-                loop={true}
-              />
+              <Tilt
+                className="tilt-container"
+                tiltMaxAngleX={25}
+                tiltMaxAngleY={25}
+                perspective={1000}
+                scale={1.1}
+                transitionSpeed={400}
+                gyroscope={true}
+              >
+                <Lottie
+                  className="hero-animation img-fluid px-3 py-2 ms-lg-5"
+                  animationData={animationData}
+                  loop={true}
+                  autoplay={true}
+                  rendererSettings={{
+                    preserveAspectRatio: "xMidYMid slice",
+                  }}
+                />
+              </Tilt>
             </div>
           </Col>
         </Row>
@@ -192,13 +208,27 @@ const Home = () => {
       <Container fluid className="section2 mt-5" data-aos="fade-right" data-aos-duration="2500">
         <Row className="align-items-start justify-content-center mx-auto">
           <Col sm={6} md={6} lg={5}>
-            <Lottie
-              className="animation-section2 mx-auto"
-              animationData={section2AnimationData}
-              loop={true}
-              data-aos="zoom-in"
-              data-aos-duration="5000"
-            />
+            <Tilt
+              className="tilt-container"
+              tiltMaxAngleX={25}
+              tiltMaxAngleY={25}
+              perspective={1000}
+              scale={1.1}
+              transitionSpeed={400}
+              gyroscope={true}
+            >
+              <Lottie
+                className="animation-section2 mx-auto"
+                animationData={section2AnimationData}
+                loop={true}
+                data-aos="zoom-in"
+                data-aos-duration="5000"
+                autoplay={true}
+                rendererSettings={{
+                  preserveAspectRatio: "xMidYMid slice",
+                }}
+              />
+            </Tilt>
           </Col>
           <Col sm={8} md={6} lg={6}>
             <h2 className="mt-5">What Kind of Courses of Learning</h2>
@@ -363,13 +393,27 @@ const Home = () => {
             </Nav.Link>
           </Col>
           <Col sm={1} md={2} lg={6} xl={6} xxl={4} className="quiz-col mt-4">
-            <Lottie
-              className="animation2-quiz mb-4"
-              animationData={sectionQuiz2ndAnimationData}
-              loop={true}
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-            />
+            <Tilt
+              className="tilt-container"
+              tiltMaxAngleX={25}
+              tiltMaxAngleY={25}
+              perspective={1000}
+              scale={false}
+              transitionSpeed={400}
+              gyroscope={true}
+            >
+              <Lottie
+                className="animation2-quiz mb-4"
+                animationData={sectionQuiz2ndAnimationData}
+                loop={true}
+                data-aos="zoom-in"
+                data-aos-duration="2000"
+                autoplay={true}
+                rendererSettings={{
+                  preserveAspectRatio: "xMidYMid slice",
+                }}
+              />
+            </Tilt>
           </Col>
         </Row>
       </Container>
@@ -377,13 +421,27 @@ const Home = () => {
       <Container fluid className="section5 mt-5" data-aos="fade-in" data-aos-duration="2500">
         <Row className="align-items-start justify-content-center">
           <Col lg={8} xl={8} xxl={6}>
-            <Lottie
-              className="animation-section5 mx-auto"
-              animationData={sectionTeacher}
-              loop={true}
-              data-aos="fade-in"
-              data-aos-duration="2000"
-            />
+            <Tilt
+              className="tilt-container"
+              tiltMaxAngleX={25}
+              tiltMaxAngleY={25}
+              perspective={1000}
+              scale={false}
+              transitionSpeed={400}
+              gyroscope={true}
+            >
+              <Lottie
+                className="animation-section5 mx-auto"
+                animationData={sectionTeacher}
+                loop={true}
+                data-aos="fade-in"
+                data-aos-duration="2000"
+                autoplay={true}
+                rendererSettings={{
+                  preserveAspectRatio: "xMidYMid slice",
+                }}
+              />
+            </Tilt>
           </Col>
           <Col lg={4} xl={4} xxl={6}>
             <h2 className="mt-5">Teacher</h2>
