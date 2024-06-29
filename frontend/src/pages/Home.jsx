@@ -131,7 +131,7 @@ const Home = () => {
               <Nav.Link className="login-button btn-hero text-white text-center" href="/courses-list">
                 Scopri i nostri corsi
               </Nav.Link>
-              <div className="py-3 d-flex gap-4">
+              <div className="partner py-3 d-flex">
                 <img src="/home_img/Google-Logo.wine.svg" className="sponsor-logo" alt="Google Logo" />{" "}
                 <img src="/home_img/udemy.svg" className="udemy" alt="Udemy Logo" />{" "}
                 <img src="/home_img/codecademy-svgrepo-com.svg" className="codecademy" alt="Codecademy Logo" />{" "}
@@ -295,6 +295,19 @@ const Home = () => {
           </Col>
         </Row>
 
+        <div className="carousel-arrows-wrapper d-flex justify-content-center mt-1">
+          {activeIndex > 0 && (
+            <div className="arrow-container" onClick={handlePrev}>
+              <IoIosArrowBack className="custom-arrow-cards down prev-arrow-cards" />
+            </div>
+          )}
+          {activeIndex !== Math.ceil(courses.length / 4) - 1 && (
+            <div className="arrow-container" onClick={handleNext}>
+              <IoIosArrowForward className="custom-arrow-cards down next-arrow-cards" />
+            </div>
+          )}
+        </div>
+
         <Modal show={showModal} onHide={handleCloseModal}>
           <Modal.Header closeButton>
             <Modal.Title>Corso: {selectedCourse?.title}</Modal.Title>
@@ -335,9 +348,9 @@ const Home = () => {
       </Container>
 
       {/* Section 4 Quiz */}
-      <Container fluid className="py-5 quiz-section" data-aos="fade-up" data-aos-duration="2000" loop={true}>
+      <Container fluid className="py-5 quiz-section mt-5" data-aos="fade-up" data-aos-duration="2000" loop={true}>
         <Row className="align-content-center justify-content-center container-quiz-home text-white">
-          <Col md={12} lg={6} xl={6} xxl={6} className="quiz-col">
+          <Col sm={12} md={9} lg={6} xl={6} xxl={6} className="quiz-col">
             <h2>Divertiti con i nostri quiz!</h2>
             <p className="mb-5">Lorem ipsum dolor sit amet.lorem10 Lorem ipsum dolor sit, amet consectetur</p>
             <Nav.Link className="login-button quiz-home-btn w-50 text-white text-center" href="/scopri-se-fa-per-te">
@@ -349,7 +362,7 @@ const Home = () => {
               Scegli il quiz
             </Nav.Link>
           </Col>
-          <Col lg={6} xl={6} xxl={4} className="quiz-col mt-4">
+          <Col sm={1} md={2} lg={6} xl={6} xxl={4} className="quiz-col mt-4">
             <Lottie
               className="animation2-quiz mb-4"
               animationData={sectionQuiz2ndAnimationData}
@@ -363,16 +376,16 @@ const Home = () => {
       {/* Section 5 Teacher */}
       <Container fluid className="section5 mt-5" data-aos="fade-in" data-aos-duration="2500">
         <Row className="align-items-start justify-content-center">
-          <Col lg={5}>
+          <Col lg={8} xl={8} xxl={6}>
             <Lottie
-              className="animation-section5 mx-auto mt-5"
+              className="animation-section5 mx-auto"
               animationData={sectionTeacher}
               loop={true}
               data-aos="fade-in"
               data-aos-duration="2000"
             />
           </Col>
-          <Col lg={5}>
+          <Col lg={4} xl={4} xxl={6}>
             <h2 className="mt-5">Teacher</h2>
             <p className=" lead">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br /> Nostrum eveniet maiores ab numquam
@@ -383,7 +396,7 @@ const Home = () => {
       </Container>
       <Container fluid className="section6 mt-5">
         <Row className="justify-content-center">
-          <h2 className="text-center mt-1">Testimonials</h2>
+          <h2 className="text-center mt-1 py-4">Testimonials</h2>
           <Col md={10}>
             <Carousel
               fade
@@ -454,95 +467,12 @@ const Home = () => {
                 <FaQuoteLeft className="quote-icon mt-2" />
                 <p className=" custom-paragraph">
                   Recentemente ho riscoperto la mia passione per l'informatica. Grazie alla vostra piattaforma ho
-                  trovato il modo perfetto per coltivare questa passione, anche tra un set e l'altro. <br /> È
-                  incredibile come la tecnologia e la formazione possano essere accessibili ovunque e in qualsiasi
-                  momento. Grazie per aver reso possibile il mio viaggio verso il mondo digitale!
+                  trovato il modo perfetto per coltivare questa passione, anche tra un set e l'altro. È incredibile come
+                  la tecnologia e la formazione possano essere accessibili ovunque e in qualsiasi momento. Grazie per
+                  aver reso possibile il mio viaggio verso il mondo digitale!
                 </p>
               </Carousel.Item>
             </Carousel>
-          </Col>
-        </Row>
-      </Container>
-
-      <Container fluid>
-        <Row className="footer py-5 mt-5">
-          <Col xs={12} md={4}>
-            <small className="d-block mb-3">© 2024</small>
-          </Col>
-          <Col xs={6} md={2}>
-            <h5>Menu</h5>
-            <ul className="list-unstyled text-small">
-              <li>
-                <Link to="#" className="footer-link">
-                  Corsi
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="footer-link">
-                  Quiz
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="footer-link">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="footer-link">
-                  Contatti
-                </Link>
-              </li>
-            </ul>
-          </Col>
-          <Col xs={6} md={2}>
-            <h5>Link utili</h5>
-            <ul className="list-unstyled text-small">
-              <li>
-                <Link to="#" className="footer-link">
-                  Chi siamo
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="footer-link">
-                  FAQ
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="footer-link">
-                  Termini di servizio
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="footer-link">
-                  Privacy
-                </Link>
-              </li>
-            </ul>
-          </Col>
-          <Col xs={6} md={2}>
-            <h5>Partner</h5>
-            <ul className="list-unstyled text-small">
-              <li>
-                <Link to="#" className="footer-link">
-                  Google
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="footer-link">
-                  Udemy
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="footer-link">
-                  CodeCademy
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="footer-link">
-                  Meta
-                </Link>
-              </li>
-            </ul>
           </Col>
         </Row>
       </Container>

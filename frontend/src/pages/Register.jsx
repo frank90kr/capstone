@@ -2,8 +2,10 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "../redux/actions";
-import { Button, Col, Container, Form, Row, Spinner } from "react-bootstrap";
+import { Button, Col, Container, Form, FormControl, InputGroup, Row, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import { PiEyeThin } from "react-icons/pi";
+import { PiEyeSlashThin } from "react-icons/pi";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -64,6 +66,17 @@ const Register = () => {
       });
   };
 
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setConfirmPasswordVisible(!confirmPasswordVisible);
+  };
+
   return (
     <Container>
       <Row className="d-flex justify-content-center align-items-center min-vh-100 mt-5">
@@ -120,26 +133,37 @@ const Register = () => {
               </div>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Control
-                type="password"
-                name="password"
-                id="password"
-                onChange={(ev) => updateInputValue(ev)}
-                value={formData.password}
-                placeholder="Password"
-              />
+            <Form.Group controlId="formBasicPassword" className="mb-3">
+              <Form.Label>Password</Form.Label>
+              <InputGroup>
+                <FormControl
+                  type={passwordVisible ? "text" : "password"}
+                  name="password"
+                  id="password"
+                  onChange={(ev) => updateInputValue(ev)}
+                  value={formData.password}
+                  placeholder="Password"
+                />
+                <InputGroup.Text onClick={togglePasswordVisibility} style={{ cursor: "pointer" }}>
+                  {passwordVisible ? <PiEyeThin /> : <PiEyeSlashThin />}
+                </InputGroup.Text>
+              </InputGroup>
             </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPasswordConfirm">
-              <Form.Control
-                type="password"
-                name="password_confirmation"
-                id="password_confirmation"
-                onChange={(ev) => updateInputValue(ev)}
-                value={formData.password_confirmation}
-                placeholder="Conferma la password"
-              />
+            <Form.Group controlId="formBasicPasswordConfirm" className="mb-3">
+              <Form.Label>Conferma la password</Form.Label>
+              <InputGroup>
+                <FormControl
+                  type={confirmPasswordVisible ? "text" : "password"}
+                  name="password_confirmation"
+                  id="password_confirmation"
+                  onChange={(ev) => updateInputValue(ev)}
+                  value={formData.password_confirmation}
+                  placeholder="Conferma la password"
+                />
+                <InputGroup.Text onClick={toggleConfirmPasswordVisibility} style={{ cursor: "pointer" }}>
+                  {confirmPasswordVisible ? <PiEyeThin /> : <PiEyeSlashThin />}
+                </InputGroup.Text>
+              </InputGroup>
             </Form.Group>
 
             <Button

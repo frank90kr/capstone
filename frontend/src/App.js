@@ -20,6 +20,7 @@ import Quiz from "./pages/Quiz";
 import ScopriSeFaPerTe from "./components/quiz/ScopriSeFaPerTe";
 import PaymentForm from "./pages/PaymentForm";
 import PurchasedCourses from "./pages/PurchasedCourses";
+import Footer from "./components/Footer";
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -73,6 +74,7 @@ function App() {
           <Route path="/purchase-courses" element={<PurchasedCourses />} />
         </Route>
       </Routes>
+      <Footer />
     </BrowserRouter>
   ) : null;
 }

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Row, Col, Alert, Spinner } from "react-bootstrap";
+import { Form, Button, Container, Row, Col, Alert, Spinner, FormControl, InputGroup } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { LOGIN } from "../redux/actions";
+import { PiEyeThin } from "react-icons/pi";
+import { PiEyeSlashThin } from "react-icons/pi";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -45,6 +47,12 @@ const Login = () => {
       });
   };
 
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
   return (
     <Container>
       <Row className="justify-content-center align-items-center min-vh-100">
@@ -65,15 +73,20 @@ const Login = () => {
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="formBasicPassword">
-              <Form.Control
-                size="lg"
-                type="password"
-                name="password"
-                id="password"
-                onChange={(ev) => updateInputValue(ev)}
-                value={formData.password}
-                placeholder="password"
-              />
+              <InputGroup>
+                <FormControl
+                  size="lg"
+                  type={passwordVisible ? "text" : "password"}
+                  name="password"
+                  id="password"
+                  onChange={(ev) => updateInputValue(ev)}
+                  value={formData.password}
+                  placeholder="Password"
+                />
+                <InputGroup.Text onClick={togglePasswordVisibility} style={{ cursor: "pointer" }}>
+                  {passwordVisible ? <PiEyeThin /> : <PiEyeSlashThin />}
+                </InputGroup.Text>
+              </InputGroup>
             </Form.Group>
 
             <Button
