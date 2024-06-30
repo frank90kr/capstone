@@ -6,7 +6,7 @@ const Footer = () => {
     <Container fluid>
       <Row className="footer py-5 mt-5">
         <Col xs={12} md={4}>
-          <small className="d-block mb-3">© 2024</small>
+          <small className="d-block ">© 2024</small>
         </Col>
         <Col xs={6} md={2}>
           <h5>Menu</h5>

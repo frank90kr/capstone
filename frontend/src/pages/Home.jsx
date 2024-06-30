@@ -166,6 +166,7 @@ const Home = () => {
           </Col>
         </Row>
       </Container>
+
       {/* Under Hero */}
       <Container fluid className="under-hero" data-aos="fade-up" data-aos-duration="1000">
         <Row className="container-under-hero d-flex justify-content-center align-items-center">
@@ -204,73 +205,49 @@ const Home = () => {
           </Col>
         </Row>
       </Container>
-      {/* Section 2 */}
-      <Container fluid className="section2 mt-5" data-aos="fade-right" data-aos-duration="2500">
-        <Row className="align-items-start justify-content-center mx-auto">
-          <Col sm={6} md={6} lg={5}>
-            <Tilt
-              className="tilt-container"
-              tiltMaxAngleX={25}
-              tiltMaxAngleY={25}
-              perspective={1000}
-              scale={1.1}
-              transitionSpeed={400}
-              gyroscope={true}
-            >
-              <Lottie
-                className="animation-section2 mx-auto"
-                animationData={section2AnimationData}
-                loop={true}
-                data-aos="zoom-in"
-                data-aos-duration="5000"
-                autoplay={true}
-                rendererSettings={{
-                  preserveAspectRatio: "xMidYMid slice",
-                }}
-              />
-            </Tilt>
-          </Col>
-          <Col sm={8} md={6} lg={6}>
-            <h2 className="mt-5">What Kind of Courses of Learning</h2>
-            <p className=" lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
 
-            <div className="header-section2-icon">
-              <div className="section2-icon icon1 d-flex">
-                <div className="d-flex mt-4 gap-3 align-items-center" data-aos="fade-up" data-aos-duration="5000">
-                  <div className="laptop-house fs-1 text-white d-flex justify-content-center">
-                    <FaLaptopHouse />
-                  </div>
-                  <h3>Courses</h3>
-                </div>
-                <div className="d-flex mt-4 gap-3 align-items-center" data-aos="fade-up" data-aos-duration="5000">
-                  <div className="laptop-house fs-1 text-white d-flex justify-content-center ms-5">
-                    <FaLaptopHouse />
-                  </div>
-                  <h3>Courses</h3>
-                </div>
-              </div>
-            </div>
-            <div className="header-section2-icon">
-              <div className="section2-icon icon2 d-flex">
-                <div className="d-flex mt-4 gap-3 align-items-center" data-aos="fade-down" data-aos-duration="5000">
-                  <div className="laptop-house fs-1 text-white d-flex justify-content-center">
-                    <FaLaptopHouse />
-                  </div>
-                  <h3>Courses</h3>
-                </div>
-                <div className="d-flex mt-4 gap-3 align-items-center" data-aos="fade-down" data-aos-duration="5000">
-                  <div className="laptop-house fs-1 text-white d-flex justify-content-center ms-5">
-                    <FaLaptopHouse />
-                  </div>
-                  <h3>Courses</h3>
-                </div>
-              </div>
-            </div>
+      {/* Section 2 */}
+      <Container fluid className="section2 mt-2" data-aos="fade-right" data-aos-duration="2500">
+        <Row className="text-center mb-4">
+          <Col xs={12}>
+            <h2 className="mt-5">What Kind of Courses of Learning</h2>
+            <p className="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+          </Col>
+        </Row>
+        <Row className="justify-content-center mb-3 animation-row">
+          <Col xs={12} className="d-flex justify-content-center">
+            <Lottie
+              className="animation-section2"
+              animationData={section2AnimationData}
+              loop={true}
+              data-aos="zoom-in"
+              data-aos-duration="5000"
+              autoplay={true}
+              rendererSettings={{
+                preserveAspectRatio: "xMidYMid slice",
+              }}
+            />
+          </Col>
+        </Row>
+
+        <Row className="text-dark justify-content-center mx-auto mb-4 flex-wrap">
+          <Col xs={4} className="d-flex flex-column align-items-center icon1">
+            <FaLaptopHouse className="ms-5" />{" "}
+            {/* Aggiungi size per aumentare le dimensioni dell'icona se necessario */}
+            <h3 className="ms-5">Courses</h3>
+          </Col>
+          <Col xs={4} className="d-flex flex-column align-items-center justify-content-center">
+            <FaLaptopHouse className="ms-1 fs-2" />
+            <h3>Courses</h3>
+          </Col>
+          <Col xs={4} className="d-flex flex-column align-items-center justify-content-center icon3">
+            <FaLaptopHouse />
+            <h3>Courses</h3>
           </Col>
         </Row>
       </Container>
       {/* Section3 Card's Course */}
-      <Container>
+      <Container className="">
         <h2 className="text-center py-4">I nostri corsi</h2>
 
         <div className="carousel-arrows-wrapper d-flex justify-content-center mt-3">
@@ -286,7 +263,7 @@ const Home = () => {
           )}
         </div>
 
-        <Row className="justify-content-center flex-nowrap mt-5">
+        <Row className="justify-content-center flex-nowrap mt-5 mx-auto">
           <Col>
             <Carousel
               activeIndex={activeIndex}
@@ -382,7 +359,7 @@ const Home = () => {
         <Row className="align-content-center justify-content-center container-quiz-home text-white">
           <Col sm={12} md={9} lg={6} xl={6} xxl={6} className="quiz-col">
             <h2>Divertiti con i nostri quiz!</h2>
-            <p className="mb-5">Lorem ipsum dolor sit amet.lorem10 Lorem ipsum dolor sit, amet consectetur</p>
+            <p className="mb-5 lead">Lorem ipsum dolor sit amet.lorem10 Lorem ipsum dolor sit, amet consectetur</p>
             <Nav.Link className="login-button quiz-home-btn w-50 text-white text-center" href="/scopri-se-fa-per-te">
               l'informatica fa per te?
             </Nav.Link>

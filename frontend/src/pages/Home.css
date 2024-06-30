@@ -177,41 +177,35 @@
 }
 /* Section2 */
 .section2 {
-  background-color: #9bd1e5;
-  /* height: 23rem; */
-  padding-left: 15%;
-  padding-right: 15%;
+  background: hsla(169, 76%, 48%, 1);
+
+  background: linear-gradient(90deg, hsla(169, 76%, 48%, 1) 0%, hsla(67, 87%, 82%, 1) 100%);
+
+  background: -moz-linear-gradient(90deg, hsla(169, 76%, 48%, 1) 0%, hsla(67, 87%, 82%, 1) 100%);
+
+  background: -webkit-linear-gradient(90deg, hsla(169, 76%, 48%, 1) 0%, hsla(67, 87%, 82%, 1) 100%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#1ED7B5", endColorstr="#F0F9A7", GradientType=1 );
 }
 .animation-section2 {
-  width: 20rem;
-  filter: drop-shadow(20px 5px 9px #4d4d4db7);
+  width: 18rem;
+  filter: drop-shadow(20px 5px 9px #4d4d4dc1);
 }
-@media (max-width: 1095px) {
-  .animation-section2 {
-    padding-right: 4.8rem;
-  }
+.animation-row {
+  margin-top: -55px;
 }
-@media (max-width: 950px) {
-  .header-section2-icon {
-    display: flex;
-    margin-top: 1rem;
-  }
+.icon1 {
+  padding-left: 20rem;
 }
-
-@media (max-width: 731px) {
-  .icon1 {
-    margin-bottom: -2rem;
-  }
-}
-@media (max-width: 768px) {
-  .section2 {
-    /* height: 38rem; */
-  }
+.icon3 {
+  padding-right: 20rem;
 }
 
 /* Section Card's Course */
+
 .card {
   cursor: pointer;
+  /* max-width: 300px; */
 }
 .course-image {
   /* height: 160px; */
@@ -222,7 +216,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: -40px;
+  margin-bottom: -10px;
 }
 
 .arrow-container {
@@ -251,7 +245,7 @@
 
 /* Section4 Quiz */
 .container-quiz-home {
-  background-color: #1b264f;
+  background-color: #0a2353;
   height: 23rem;
   padding-left: 15%;
   padding-right: 15%;
@@ -285,7 +279,7 @@
 
 /* Section 5 Teacher */
 .section5 {
-  background-color: #f9a03f;
+  background-color: #fda521;
   /* height: 23rem; */
   padding-left: 15%;
   padding-right: 15%;
