@@ -19,16 +19,16 @@
 }
 
 .typewriter h1 {
-  overflow: hidden; /* Ensures the text stays within the container */
-  border-right: 0.15em solid black; /* The typewriter cursor */
-  white-space: nowrap; /* Keeps the text on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: 0.15em; /* Adjust as needed */
+  overflow: hidden;
+  border-right: 0.15em solid black;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
   animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
 
 .hero-text {
-  margin-top: 50px; /* Add some top margin */
+  margin-top: 50px;
 }
 
 .title-margin {
@@ -37,10 +37,10 @@
 
 .hero-animation {
   width: 40rem;
-  transition: transform 0.3s ease-in-out; /* Transizione fluida */
-  border: none; /* Assicurati che non ci sia alcun bordo */
+  transition: transform 0.3s ease-in-out;
+  border: none;
   filter: drop-shadow(0px 5px 24px #28282826);
-  perspective: 1000px; /* Aggiungi profondità 3D */
+  perspective: 1000px;
 }
 
 .div-hero-animation {
@@ -97,7 +97,7 @@
 }
 
 .partner {
-  gap: 10px;
+  gap: 15px;
 }
 @media (max-width: 576px) {
   .partner {
@@ -113,7 +113,7 @@
   width: 4rem;
 }
 .codecademy {
-  width: 5.2rem;
+  width: 5.4rem;
 }
 .meta {
   width: 4.8rem;
@@ -131,9 +131,18 @@
 }
 
 .under-hero {
-  background: rgb(255, 255, 255, 0.4);
+  /* background: rgb(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); */
+  background: hsla(16, 100%, 76%, 1);
+
+  background: linear-gradient(90deg, hsla(16, 100%, 76%, 1) 0%, hsla(49, 100%, 81%, 1) 100%);
+
+  background: -moz-linear-gradient(90deg, hsla(16, 100%, 76%, 1) 0%, hsla(49, 100%, 81%, 1) 100%);
+
+  background: -webkit-linear-gradient(90deg, hsla(16, 100%, 76%, 1) 0%, hsla(49, 100%, 81%, 1) 100%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FFA585", endColorstr="#FFEDA0", GradientType=1 );
   gap: 5rem;
   padding-left: 15%;
   padding-right: 15%;
@@ -145,9 +154,6 @@
   }
 }
 
-.div-under-hero {
-  /* height: 10rem; */
-}
 .div-icon-under-hero {
   background-color: #009970;
   width: 6rem;
@@ -161,9 +167,7 @@
     flex-direction: column;
     gap: 1rem;
   }
-  .div-under-hero {
-    /* height: 7rem; */
-  }
+
   .div-icon-under-hero {
     width: 5rem;
     height: 4rem;
@@ -177,15 +181,15 @@
 }
 /* Section2 */
 .section2 {
-  background: hsla(169, 76%, 48%, 1);
+  background: hsla(186, 33%, 94%, 1);
 
-  background: linear-gradient(90deg, hsla(169, 76%, 48%, 1) 0%, hsla(67, 87%, 82%, 1) 100%);
+  background: linear-gradient(90deg, hsla(186, 33%, 94%, 1) 0%, hsla(216, 41%, 79%, 1) 100%);
 
-  background: -moz-linear-gradient(90deg, hsla(169, 76%, 48%, 1) 0%, hsla(67, 87%, 82%, 1) 100%);
+  background: -moz-linear-gradient(90deg, hsla(186, 33%, 94%, 1) 0%, hsla(216, 41%, 79%, 1) 100%);
 
-  background: -webkit-linear-gradient(90deg, hsla(169, 76%, 48%, 1) 0%, hsla(67, 87%, 82%, 1) 100%);
+  background: -webkit-linear-gradient(90deg, hsla(186, 33%, 94%, 1) 0%, hsla(216, 41%, 79%, 1) 100%);
 
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#1ED7B5", endColorstr="#F0F9A7", GradientType=1 );
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#EBF4F5", endColorstr="#B5C6E0", GradientType=1 );
 }
 .animation-section2 {
   width: 18rem;
@@ -194,11 +198,14 @@
 .animation-row {
   margin-top: -55px;
 }
+.icon-row {
+  padding-bottom: 2.5rem;
+}
 .icon1 {
-  padding-left: 20rem;
+  /* padding-left: 20rem; */
 }
 .icon3 {
-  padding-right: 20rem;
+  /* padding-right: 20rem; */
 }
 
 /* Section Card's Course */

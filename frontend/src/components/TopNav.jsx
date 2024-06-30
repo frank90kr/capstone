@@ -32,7 +32,7 @@ const TopNav = () => {
         <Container>
           <Navbar.Brand className="me-auto">
             <Link className="navbar-brand" to="/">
-              Navbar
+              Dev NeXt
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarNav" />
@@ -48,9 +48,7 @@ const TopNav = () => {
               <Nav.Link className="link-nav mx-lg-2" href="#action2">
                 About
               </Nav.Link>
-              <Nav.Link className="link-nav mx-lg-2" href="#action3">
-                Services
-              </Nav.Link>
+
               <Nav.Link className="link-nav mx-lg-2" href="#action4">
                 Contact
               </Nav.Link>

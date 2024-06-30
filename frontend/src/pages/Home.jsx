@@ -20,6 +20,9 @@ import { useSelector } from "react-redux";
 import { FaQuoteLeft } from "react-icons/fa6";
 import { IoIosArrowBack, IoIosArrowDropleftCircle, IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
+import { BiSolidRightArrow } from "react-icons/bi";
+import { BiSolidLeftArrow } from "react-icons/bi";
+
 import Tilt from "react-parallax-tilt";
 
 const Home = () => {
@@ -133,11 +136,11 @@ const Home = () => {
               <Nav.Link className="login-button btn-hero text-white text-center" href="/courses-list">
                 Scopri i nostri corsi
               </Nav.Link>
-              <div className="partner py-3 d-flex">
-                <img src="/home_img/Google-Logo.wine.svg" className="sponsor-logo" alt="Google Logo" />{" "}
-                <img src="/home_img/udemy.svg" className="udemy" alt="Udemy Logo" />{" "}
-                <img src="/home_img/codecademy-svgrepo-com.svg" className="codecademy" alt="Codecademy Logo" />{" "}
-                <img src="/home_img/meta-logo-12362.svg" className="meta" alt="Logo" />{" "}
+              <div className="partner py-3 d-flex justify-content-start">
+                <img src="/home_img/Google-Logo.wine.svg" className="sponsor-logo" alt="Google Logo" />
+                <img src="/home_img/udemy.svg" className="udemy" alt="Udemy Logo" />
+                <img src="/home_img/codecademy-svgrepo-com.svg" className="codecademy" alt="Codecademy Logo" />
+                <img src="/home_img/meta-logo-12362.svg" className="meta" alt="Logo" />
               </div>
             </div>
           </Col>
@@ -207,7 +210,7 @@ const Home = () => {
       </Container>
 
       {/* Section 2 */}
-      <Container fluid className="section2 mt-2" data-aos="fade-right" data-aos-duration="2500">
+      <Container fluid className="section2 mt-5" data-aos="fade-right" data-aos-duration="2500">
         <Row className="text-center mb-4">
           <Col xs={12}>
             <h2 className="mt-5">What Kind of Courses of Learning</h2>
@@ -230,19 +233,19 @@ const Home = () => {
           </Col>
         </Row>
 
-        <Row className="text-dark justify-content-center mx-auto mb-4 flex-wrap">
+        <Row className="text-dark justify-content-center mx-auto mb-4 flex-wrap icon-row">
           <Col xs={4} className="d-flex flex-column align-items-center icon1">
-            <FaLaptopHouse className="ms-5" />{" "}
+            <FaLaptopHouse className="fs-2" />
             {/* Aggiungi size per aumentare le dimensioni dell'icona se necessario */}
-            <h3 className="ms-5">Courses</h3>
+            <h4 className="">Courses Lorem ipsum dolor sit amet. </h4>
           </Col>
           <Col xs={4} className="d-flex flex-column align-items-center justify-content-center">
-            <FaLaptopHouse className="ms-1 fs-2" />
-            <h3>Courses</h3>
+            <FaLaptopHouse className=" fs-2" />
+            <h4> Courses Lorem ipsum dolor sit amet.</h4>
           </Col>
           <Col xs={4} className="d-flex flex-column align-items-center justify-content-center icon3">
-            <FaLaptopHouse />
-            <h3>Courses</h3>
+            <FaLaptopHouse className="fs-2" />
+            <h4>Courses Lorem ipsum dolor sit amet.</h4>
           </Col>
         </Row>
       </Container>
@@ -253,12 +256,12 @@ const Home = () => {
         <div className="carousel-arrows-wrapper d-flex justify-content-center mt-3">
           {activeIndex > 0 && (
             <div className="arrow-container" onClick={handlePrev}>
-              <IoIosArrowBack className="custom-arrow-cards prev-arrow-cards" />
+              <BiSolidLeftArrow className="custom-arrow-cards prev-arrow-cards" />
             </div>
           )}
           {activeIndex !== Math.ceil(courses.length / 4) - 1 && (
             <div className="arrow-container" onClick={handleNext}>
-              <IoIosArrowForward className="custom-arrow-cards next-arrow-cards" />
+              <BiSolidRightArrow className="custom-arrow-cards next-arrow-cards" />
             </div>
           )}
         </div>
@@ -295,6 +298,7 @@ const Home = () => {
                         </Card>
                       </Col>
                     ))}
+                    <hr className="w-75" />
                   </Row>
                 </Carousel.Item>
               ))}
@@ -305,12 +309,12 @@ const Home = () => {
         <div className="carousel-arrows-wrapper d-flex justify-content-center mt-1">
           {activeIndex > 0 && (
             <div className="arrow-container" onClick={handlePrev}>
-              <IoIosArrowBack className="custom-arrow-cards down prev-arrow-cards" />
+              <BiSolidLeftArrow className="custom-arrow-cards down prev-arrow-cards" />
             </div>
           )}
           {activeIndex !== Math.ceil(courses.length / 4) - 1 && (
             <div className="arrow-container" onClick={handleNext}>
-              <IoIosArrowForward className="custom-arrow-cards down next-arrow-cards" />
+              <BiSolidRightArrow className="custom-arrow-cards down next-arrow-cards" />
             </div>
           )}
         </div>
