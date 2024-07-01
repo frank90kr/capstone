@@ -156,11 +156,19 @@
 }
 
 .div-icon-under-hero {
-  background-color: #009970;
+  background-color: #009069;
   width: 6rem;
   height: 6rem;
   border-radius: 25px;
   filter: drop-shadow(0 0 0.9rem rgb(181, 181, 181));
+  /* transition: all 0.1s ease; */
+}
+.div-icon-under-hero:hover {
+  background-color: #00c994;
+
+  filter: drop-shadow(0 0 0.9rem rgb(181, 181, 181));
+  border: 2px solid #fff; /* Cambia il colore del bordo */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Effetto bordo illuminato */
 }
 @media (max-width: 768px) {
   .container-under-hero {
