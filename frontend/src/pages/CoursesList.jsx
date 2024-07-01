@@ -90,21 +90,23 @@ const CoursesList = () => {
       <Row className="justify-content-center mt-4">
         <Col md={8}>
           <p className="fw-semibold lh-lg mx-auto" data-aos="fade-down" data-aos-duration="1000">
-            Benvenuto in Dev NeXt, il nostro programma di formazione avanzata per sviluppatori, dove puoi ampliare le
-            tue competenze tecniche e accrescere la tua carriera nel campo dello sviluppo software. Offriamo una vasta
-            gamma di corsi progettati per rispondere alle esigenze dell'industria tecnologica moderna, coprendo
-            argomenti fondamentali e avanzati in vari ambiti della programmazione. Perché Scegliere i Nostri Corsi?
-            Contenuti Didattici Approfonditi: I nostri corsi sono stati sviluppati da esperti del settore, garantendo
-            contenuti aggiornati e pertinenti per rispondere alle richieste del mercato del lavoro attuale. Flessibilità
-            di Apprendimento: Studia secondo il tuo ritmo, grazie alla nostra piattaforma di e-learning accessibile 24/7
-            da qualsiasi dispositivo. Abbiamo progettato i nostri corsi per adattarsi alle tue esigenze di
-            apprendimento. Certificazioni Riconosciute: Al completamento di ciascun corso, riceverai un certificato di
-            competenza che attesta le tue abilità acquisite, riconosciuto a livello internazionale nel settore IT. Cosa
-            Offriamo Corsi Fondamentali Introduzione alla Programmazione: Un corso ideale per principianti, che copre i
-            concetti fondamentali della programmazione utilizzando linguaggi come Python, JavaScript o Java. Sviluppo
-            Web Front-end: Approfondisci le tue competenze nello sviluppo di interfacce utente responsive e dinamiche
-            utilizzando HTML, CSS e JavaScript moderno. Sviluppo Web Back-end: Impara a costruire robuste API e servizi
-            web utilizzando framework popolari come Node.js, Django o Spring Boot.
+            Benvenuto in <span className="text-success">Dev NeXt</span> , il nostro programma di formazione per
+            sviluppatori, con noi potrai ampliare le tue competenze tecniche e accrescere la tua carriera nel campo
+            dello sviluppo software. Offriamo una vasta gamma di corsi progettati per rispondere alle esigenze
+            dell'industria tecnologica moderna, coprendo argomenti fondamentali e avanzati in vari ambiti della
+            programmazione. Perché Scegliere i Nostri Corsi? Contenuti Didattici Approfonditi: I nostri corsi sono stati
+            sviluppati da esperti del settore, garantendo contenuti aggiornati e pertinenti per rispondere alle
+            richieste del mercato del lavoro attuale. Flessibilità di Apprendimento: Studia secondo il tuo ritmo, grazie
+            alla nostra piattaforma di e-learning accessibile 24/7 da qualsiasi dispositivo. <br />
+            Abbiamo progettato i nostri corsi per adattarsi alle tue esigenze di apprendimento. Sulla nostra piattaforma
+            potrai imparare i linguaggi di programmazioni più conosciuti e richiesti dal mercato del lavoro. La nostra
+            offerta formativa copre un ampio spettro di linguaggi e tecnologie. Che tu stia iniziando il tuo percorso
+            nel mondo della programmazione o che tu sia già un professionista in cerca di specializzazione, abbiamo il
+            corso giusto per te. Una delle principali caratteristiche della nostra piattaforma è la flessibilità. Puoi
+            accedere ai corsi in qualsiasi momento e da qualsiasi luogo, utilizzando il tuo computer, tablet o
+            smartphone. Questo ti permette di organizzare il tuo apprendimento in base ai tuoi impegni personali e
+            professionali. Inoltre, i nostri corsi sono strutturati in moduli brevi, permettendoti di avanzare passo
+            dopo passo e di monitorare i tuoi progressi.
           </p>
         </Col>
       </Row>

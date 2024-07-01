@@ -23,6 +23,9 @@ import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { BiSolidLeftArrow } from "react-icons/bi";
 import { MdAdsClick } from "react-icons/md";
+import { BsPersonWorkspace } from "react-icons/bs";
+import { FcWorkflow } from "react-icons/fc";
+import { GrWorkshop } from "react-icons/gr";
 
 import Tilt from "react-parallax-tilt";
 
@@ -139,9 +142,7 @@ const Home = () => {
                 <h1 className="title-hero fw-bold dysplay-2">Diventa un Developer</h1>
               </div>
               {/* <h1 className="title-margin">Become a developer</h1> */}
-              <p className="p-hero lead">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur officiis
-              </p>
+              <p className="p-hero lead mt-1">Sblocca il tuo potenziale con Dev NeXt</p>
               <Nav.Link className="login-button btn-hero text-white text-center" href="/courses-list">
                 Scopri i nostri corsi
               </Nav.Link>
@@ -181,37 +182,37 @@ const Home = () => {
 
       {/* Under Hero */}
       <Container fluid className="under-hero" data-aos="fade-up" data-aos-duration="1000">
-        <Row className="container-under-hero d-flex justify-content-center align-items-center">
-          <Col xs={12} md={4} className="my-3">
+        <Row className="container-under-hero d-flex justify-content-center align-items-center py-1">
+          <Col xs={12} sm={12} md={4} className="my-3">
             <div className="div-under-hero d-flex align-items-center justify-content-center">
               <div className="div-icon-under-hero d-flex justify-content-center align-items-center">
                 <CgFileDocument className="text-white fs-1" />
               </div>
               <div className="ms-4 text-center">
-                <h3 className="fw-semibold">Lorem ipsum</h3>
-                <p className="lead">Lorem ipsum dolor sit amet.</p>
+                <h3 className="fw-semibold">Materiale</h3>
+                <p className="lead">per un apprendimento efficace e coinvolgente </p>
               </div>
             </div>
           </Col>
-          <Col xs={12} md={4} className="my-3">
+          <Col xs={12} sm={12} md={4} className="my-3">
             <div className="div-under-hero d-flex align-items-center justify-content-center">
               <div className="div-icon-under-hero d-flex justify-content-center align-items-center">
                 <PiVideoLight className="text-white fs-1" />
               </div>
               <div className="ms-4 text-center">
-                <h3 className="fw-semibold">Lorem ipsum</h3>
-                <p className="lead">Lorem ipsum dolor sit amet.</p>
+                <h3 className="fw-semibold">Videocorsi</h3>
+                <p className="lead">per un'esperienza di apprendimento completa</p>
               </div>
             </div>
           </Col>
-          <Col xs={12} md={4} className="my-3">
+          <Col xs={12} sm={12} md={4} className="my-3">
             <div className="div-under-hero d-flex align-items-center justify-content-center">
               <div className="div-icon-under-hero d-flex justify-content-center align-items-center">
                 <MdComputer className="text-white fs-1" />
               </div>
               <div className="ms-4 text-center">
-                <h3 className="fw-semibold">Lorem ipsum</h3>
-                <p className="lead">Lorem ipsum dolor sit amet.</p>
+                <h3 className="fw-semibold">Lezioni</h3>
+                <p className="lead"> che potrai seguire al tuo ritmo, ovunque ti trovi</p>
               </div>
             </div>
           </Col>
@@ -222,8 +223,8 @@ const Home = () => {
       <Container fluid className="section2 mt-5" data-aos="fade-right" data-aos-duration="2500">
         <Row className="text-center mb-4">
           <Col xs={12}>
-            <h2 className="mt-5 dysplay-2 fw-semibold">What Kind of Courses of Learning</h2>
-            <p className="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+            <h2 className="mt-5 dysplay-2 fw-semibold">Con noi acquisirai le skill più richieste</h2>
+            <p className="lead">Diventa un maestro del codice e apri le porte a infinite opportunità.</p>
           </Col>
         </Row>
         <Row className="justify-content-center mb-3 animation-row">
@@ -248,17 +249,17 @@ const Home = () => {
           data-aos-duration="1000"
         >
           <Col xs={4} className="d-flex flex-column align-items-center icon1">
-            <FaLaptopHouse className="fs-2" />
+            <BsPersonWorkspace className="fs-2" />
             {/* Aggiungi size per aumentare le dimensioni dell'icona se necessario */}
-            <h4 className="">Courses Lorem ipsum dolor sit amet. </h4>
+            <h4 className="mt-1">Il futuro del lavoro è digitale </h4>
           </Col>
           <Col xs={4} className="d-flex flex-column align-items-center justify-content-center">
-            <FaLaptopHouse className=" fs-2" />
-            <h4> Courses Lorem ipsum dolor sit amet.</h4>
+            <FcWorkflow className=" fs-2" />
+            <h4 className="mt-1"> l'efficienza di un workflow agile</h4>
           </Col>
           <Col xs={4} className="d-flex flex-column align-items-center justify-content-center icon3">
-            <FaLaptopHouse className="fs-2" />
-            <h4>Courses Lorem ipsum dolor sit amet.</h4>
+            <GrWorkshop className="fs-2" />
+            <h4 className="mt-1">unisciti al nostro team di docenti</h4>
           </Col>
         </Row>
       </Container>
@@ -386,7 +387,7 @@ const Home = () => {
         <Row className="align-content-center justify-content-center container-quiz-home text-white">
           <Col xs={12} sm={12} md={9} lg={6} xl={6} xxl={6} className="quiz-col">
             <h2 className="dysplay-2 fw-semibold">Divertiti con i nostri quiz!</h2>
-            <p className="mb-5 lead">Lorem ipsum dolor sit amet.lorem10 Lorem ipsum dolor sit, amet consectetur</p>
+            <p className="mb-5 lead">Valuta i tuoi progressi: affronta i nostri quiz e ottieni feedback immediato.</p>
             <Nav.Link className="login-button quiz-home-btn w-50 text-white text-center" href="/scopri-se-fa-per-te">
               l'informatica fa per te?
             </Nav.Link>
@@ -450,8 +451,12 @@ const Home = () => {
           <Col xs={12} lg={4} xl={4} xxl={6}>
             <h2 className="mt-5 dysplay-2 fw-semibold">Teacher</h2>
             <p className=" lead">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br /> Nostrum eveniet maiores ab numquam
-              facilis minus Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati, a?
+              Inizia a far parte della nostra community di insegnanti e aiuta a plasmare il futuro della programmazione.
+              <br />
+              <p className="mt-2">
+                {" "}
+                La tua esperienza può fare la differenza: diventa un insegnante e crea nuovi corsi oggi stesso.
+              </p>
             </p>
           </Col>
         </Row>
