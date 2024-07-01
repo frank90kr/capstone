@@ -61,7 +61,7 @@ const Login = () => {
           <Form onSubmit={(ev) => submitLogin(ev)} noValidate>
             <Form.Group className="mt-3 mb-3" controlId="formBasicEmail">
               <Form.Control
-                size="lg"
+                size="md"
                 type="email"
                 name="email"
                 id="email"
@@ -75,7 +75,7 @@ const Login = () => {
             <Form.Group className="mb-4" controlId="formBasicPassword">
               <InputGroup>
                 <FormControl
-                  size="lg"
+                  size="md"
                   type={passwordVisible ? "text" : "password"}
                   name="password"
                   id="password"
@@ -88,6 +88,7 @@ const Login = () => {
                 </InputGroup.Text>
               </InputGroup>
             </Form.Group>
+            <p className="text-secondary lead fs-6 ms-1">La password deve contenere almeno 8 caratteri</p>
 
             <Button
               className="login-button w-100 fw-bold fs-6 text-white"

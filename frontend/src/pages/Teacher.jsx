@@ -209,7 +209,7 @@ const Teacher = () => {
       </Modal>
 
       <div className="d-flex flex-column align-items-center">
-        <h1 className="text-center">Bentornato {userName}!</h1>
+        <h1 className="text-center fw-bold dysplay-1">Bentornato {userName}!</h1>
         <OverlayTrigger
           placement="bottom"
           overlay={
@@ -220,7 +220,7 @@ const Teacher = () => {
             </Tooltip>
           }
         >
-          <div style={{ marginTop: "10px" }}>
+          <div style={{ marginTop: "15px" }}>
             <span className="d-inline-block" style={{ cursor: "pointer" }}>
               <FaInfo className="fs-5" />
               Passa il mouse se hai bisogno di aiuto
@@ -229,9 +229,9 @@ const Teacher = () => {
         </OverlayTrigger>
       </div>
 
-      <Row className="">
+      <Row className="mt-2">
         <Col>
-          <p className="fw-bold">Profilo utente</p>
+          <p className="display-6">Profilo utente</p>
           <ListGroup.Item>username: {userName}</ListGroup.Item>
           <hr className="w-25" />
           <ListGroup.Item>e-mail: {userEmail}</ListGroup.Item>
@@ -240,56 +240,59 @@ const Teacher = () => {
         </Col>
       </Row>
 
-      <h1 className="text-center">Lista dei Corsi</h1>
+      <h1 className="text-center mt-2">Lista dei Corsi</h1>
+      <p className="text-center">(! Puoi modificare solo i corsi da te creati)</p>
       <Row className="justify-content-center">
         <Col md={10}>
-          <Table striped bordered hover responsive="sm" className="mx-auto">
-            <thead>
-              <tr>
-                <th className="text-center">Title</th>
-                <th className="text-center">Description</th>
-                <th className="text-center">Price</th>
-                <th className="text-center">Teacher</th>
-                <th className="text-center">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {courses.map((course) => (
-                <tr key={course.id}>
-                  <td className="align-middle">{course.title}</td>
-                  <td className="align-middle">{course.description}</td>
-                  <td className="align-middle">${course.price}</td>
-                  <td className="align-middle">
-                    {course.creator_name} {/* Mostra il nome del creatore */}
-                  </td>
-                  <td className="align-middle">
-                    <div className="d-flex flex-column align-items-center">
-                      <Button
-                        className="login-button border border-none text-white btn-info w-100"
-                        size="sm"
-                        onClick={() => {
-                          setSelectedCourse(course);
-                          setTitleModal(course.title);
-                          setDescriptionModal(course.description);
-                          setPriceModal(course.price);
-                          setShowModal(true);
-                        }}
-                      >
-                        Modifica
-                      </Button>{" "}
-                      <Button
-                        size="sm"
-                        onClick={() => deleteCourse(course.id)}
-                        className="login-button border border-none text-white btn-danger mt-1 w-100"
-                      >
-                        Elimina
-                      </Button>
-                    </div>
-                  </td>
+          <div className="table-responsive">
+            <Table striped bordered hover responsive="sm" className="mx-auto mt-2">
+              <thead>
+                <tr>
+                  <th className="text-center">Title</th>
+                  {/* <th className="text-center">Description</th> */}
+                  <th className="text-center">Price</th>
+                  <th className="text-center">Teacher</th>
+                  <th className="text-center">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </Table>
+              </thead>
+              <tbody>
+                {courses.map((course) => (
+                  <tr key={course.id}>
+                    <td className="align-middle text-center">{course.title}</td>
+                    {/* <td className="align-middle">{course.description}</td> */}
+                    <td className="align-middle text-center">${course.price}</td>
+                    <td className="align-middle text-center">
+                      {course.creator_name} {/* Mostra il nome del creatore */}
+                    </td>
+                    <td className="align-middle">
+                      <div className="d-flex flex-column align-items-center">
+                        <Button
+                          className="login-button border border-none text-white btn-info "
+                          size="sm"
+                          onClick={() => {
+                            setSelectedCourse(course);
+                            setTitleModal(course.title);
+                            setDescriptionModal(course.description);
+                            setPriceModal(course.price);
+                            setShowModal(true);
+                          }}
+                        >
+                          Modifica
+                        </Button>{" "}
+                        <Button
+                          size="sm"
+                          onClick={() => deleteCourse(course.id)}
+                          className="login-button border border-none text-white btn-danger mt-1 px-4"
+                        >
+                          Elimina
+                        </Button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
         </Col>
       </Row>
 
@@ -341,7 +344,7 @@ const Teacher = () => {
             </Form.Group>
 
             <div className="text-center">
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" className="mt-3">
                 Aggiorna Corso
               </Button>
             </div>
@@ -350,7 +353,7 @@ const Teacher = () => {
       </Modal>
 
       <h1 className="text-center mt-5">Crea un nuovo corso</h1>
-      <Form onSubmit={handleSubmit} className="mx-auto" style={{ maxWidth: "800px" }}>
+      <Form onSubmit={handleSubmit} className="mx-auto lh-lg" style={{ maxWidth: "800px" }}>
         <Form.Group controlId="title">
           <Form.Label>Titolo</Form.Label>
           <Form.Control
@@ -401,7 +404,7 @@ const Teacher = () => {
         </Form.Group>
 
         <div className="text-center">
-          <Button className="login-button border border-none mt-2 fw-semibold" type="submit">
+          <Button className="login-button border border-none mt-3 fw-semibold" type="submit">
             Crea Corso
           </Button>
         </div>
@@ -409,7 +412,7 @@ const Teacher = () => {
 
       {/* Form per la creazione di una nuova lezione */}
       <h1 className="text-center mt-5">Crea una nuova lezione</h1>
-      <Form onSubmit={handleLessonSubmit} className="mx-auto" style={{ maxWidth: "800px" }}>
+      <Form onSubmit={handleLessonSubmit} className="mx-auto lh-lg" style={{ maxWidth: "800px" }}>
         <Form.Group controlId="lessonTitle">
           <Form.Label>Titolo Lezione</Form.Label>
           <Form.Control
@@ -449,7 +452,7 @@ const Teacher = () => {
           <Form.Label>Lingua Lezione</Form.Label>
           <Form.Control
             type="text"
-            placeholder="linguaggio utilizzato"
+            placeholder="linguaggio/i utilizzato"
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
             required
@@ -457,7 +460,7 @@ const Teacher = () => {
         </Form.Group>
 
         <div className="text-center">
-          <Button className="login-button border border-none mt-2 fw-semibold" type="submit">
+          <Button className="login-button border border-none mt-3 fw-semibold" type="submit">
             Crea Lezione
           </Button>
         </div>

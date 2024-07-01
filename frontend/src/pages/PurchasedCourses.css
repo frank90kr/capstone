@@ -1,3 +1,8 @@
 .title {
   margin-top: 5rem;
 }
+.card-course-purchased:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}

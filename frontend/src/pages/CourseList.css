@@ -5,8 +5,10 @@
   border-radius: 0;
 }
 
-.card {
-  height: 100%;
+.panoramic-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  filter: none !important;
 }
 
 .card-body {

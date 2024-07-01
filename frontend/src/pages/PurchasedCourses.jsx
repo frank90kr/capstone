@@ -31,12 +31,12 @@ const PurchasedCourses = () => {
 
   return (
     <Container>
-      <h1 className="text-center title">Bentornato {userName}!</h1>
-      <h2 className="text-center mt-5">Corsi Acquistati</h2>
+      <h1 className="text-center title fw-bold dysplay-1">Bentornato {userName}!</h1>
+      <h2 className="text-center mt-5 display-6">Corsi Acquistati</h2>
 
-      <Row className="flex-column align-items-center">
+      <Row className="flex-column align-items-center mt-2">
         <Col>
-          <p className="fw-bold">Profilo utente</p>
+          <p className="display-6">Profilo utente</p>
           <ListGroup.Item>username: {userName}</ListGroup.Item>
           <hr className="w-25" />
           <ListGroup.Item>e-mail: {userEmail}</ListGroup.Item>
@@ -45,18 +45,18 @@ const PurchasedCourses = () => {
         </Col>
       </Row>
 
-      <Row className="justify-content-center">
+      <Row className="justify-content-center mt-5">
         {purchasedCourses.length > 0 ? (
           purchasedCourses.map((course) => (
             <Col key={course.id} md={6} lg={4} className="mb-4">
-              <Card className="h-100">
+              <Card className="card-course-purchased">
                 <Card.Img variant="top" src={course.image} alt={course.title} />
                 <Card.Body>
                   <Card.Title>{course.title}</Card.Title>
                   <Card.Text>{course.description}</Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                  <Link to={`/lessons/${course.id}`} className="btn btn-primary">
+                  <Link to={`/lessons/${course.id}`} className="btn login-button text-white">
                     Vai al corso
                   </Link>
                 </Card.Footer>
@@ -65,7 +65,7 @@ const PurchasedCourses = () => {
           ))
         ) : (
           <Col md={8} className="text-center">
-            <p>Non hai ancora acquistato nessun corso.</p>
+            <p className="text-danger fs-5">Non hai ancora acquistato nessun corso.</p>
           </Col>
         )}
       </Row>

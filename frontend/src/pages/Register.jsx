@@ -81,11 +81,11 @@ const Register = () => {
     <Container>
       <Row className="d-flex justify-content-center align-items-center min-vh-100 mt-5">
         <Col md={4} className="mx-auto">
-          <h4>Registrati</h4>
+          <h4 className="mt-5">Registrati</h4>
           <Form className="mb-5" onSubmit={(ev) => submitLogin(ev)} noValidate>
             <Form.Group className="mt-3 mb-3" controlId="formBasicUsername">
               <Form.Control
-                size="lg"
+                size="md"
                 type="text"
                 name="name"
                 id="name"
@@ -97,7 +97,7 @@ const Register = () => {
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Control
-                size="lg"
+                size="md"
                 type="email"
                 name="email"
                 id="email"
@@ -165,6 +165,7 @@ const Register = () => {
                 </InputGroup.Text>
               </InputGroup>
             </Form.Group>
+            <p className="text-secondary lead fs-6 ms-1">La password deve contenere almeno 8 caratteri</p>
 
             <Button
               className="login-button w-100 fw-bold fs-6 text-white"
@@ -180,14 +181,12 @@ const Register = () => {
             </Button>
             <p className="lead fs-6 mt-3 text-center">
               Effettuando la registrazione, accetti i nostri Termini di utilizzo e la nostra Informativa sulla privacy.
+              <hr className="" />
             </p>
-            <div className="d-flex justify-content-center">
-              <hr className="w-75" />
-            </div>
+            <div className="d-flex justify-content-center"></div>
             <p className="text-center">
-              Hai già un account?{" "}
+              Hai già un account?
               <Link className="text-decoration-none ms-1" to="/login">
-                {" "}
                 Login
               </Link>
             </p>

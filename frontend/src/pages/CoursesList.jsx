@@ -10,6 +10,7 @@ import "./CourseList.css";
 
 const CoursesList = () => {
   const [courses, setCourses] = useState([]);
+
   const [activeTab, setActiveTab] = useState(""); // Stato per il tab attivo
 
   const [selectedCourse, setSelectedCourse] = useState(null);
@@ -84,24 +85,24 @@ const CoursesList = () => {
 
   return (
     <Container fluid>
-      <h2 className="text-center course-list-title">Panoramica Corsi</h2>
+      <h1 className="text-center course-list-title dysplay-1">Panoramica Corsi</h1>
 
       <Row className="justify-content-center mt-4">
         <Col md={8}>
-          <p className="fw-semibold lh-lg" data-aos="fade-down" data-aos-duration="1000">
-            Benvenuto nel nostro programma di formazione avanzata per sviluppatori, dove puoi ampliare le tue competenze
-            tecniche e accrescere la tua carriera nel campo dello sviluppo software. Offriamo una vasta gamma di corsi
-            progettati per rispondere alle esigenze dell'industria tecnologica moderna, coprendo argomenti fondamentali
-            e avanzati in vari ambiti della programmazione. Perché Scegliere i Nostri Corsi? Contenuti Didattici
-            Approfonditi: I nostri corsi sono stati sviluppati da esperti del settore, garantendo contenuti aggiornati e
-            pertinenti per rispondere alle richieste del mercato del lavoro attuale. Flessibilità di Apprendimento:
-            Studia secondo il tuo ritmo, grazie alla nostra piattaforma di e-learning accessibile 24/7 da qualsiasi
-            dispositivo. Abbiamo progettato i nostri corsi per adattarsi alle tue esigenze di apprendimento.
-            Certificazioni Riconosciute: Al completamento di ciascun corso, riceverai un certificato di competenza che
-            attesta le tue abilità acquisite, riconosciuto a livello internazionale nel settore IT. Cosa Offriamo Corsi
-            Fondamentali Introduzione alla Programmazione: Un corso ideale per principianti, che copre i concetti
-            fondamentali della programmazione utilizzando linguaggi come Python, JavaScript o Java. Sviluppo Web
-            Front-end: Approfondisci le tue competenze nello sviluppo di interfacce utente responsive e dinamiche
+          <p className="fw-semibold lh-lg mx-auto" data-aos="fade-down" data-aos-duration="1000">
+            Benvenuto in Dev NeXt, il nostro programma di formazione avanzata per sviluppatori, dove puoi ampliare le
+            tue competenze tecniche e accrescere la tua carriera nel campo dello sviluppo software. Offriamo una vasta
+            gamma di corsi progettati per rispondere alle esigenze dell'industria tecnologica moderna, coprendo
+            argomenti fondamentali e avanzati in vari ambiti della programmazione. Perché Scegliere i Nostri Corsi?
+            Contenuti Didattici Approfonditi: I nostri corsi sono stati sviluppati da esperti del settore, garantendo
+            contenuti aggiornati e pertinenti per rispondere alle richieste del mercato del lavoro attuale. Flessibilità
+            di Apprendimento: Studia secondo il tuo ritmo, grazie alla nostra piattaforma di e-learning accessibile 24/7
+            da qualsiasi dispositivo. Abbiamo progettato i nostri corsi per adattarsi alle tue esigenze di
+            apprendimento. Certificazioni Riconosciute: Al completamento di ciascun corso, riceverai un certificato di
+            competenza che attesta le tue abilità acquisite, riconosciuto a livello internazionale nel settore IT. Cosa
+            Offriamo Corsi Fondamentali Introduzione alla Programmazione: Un corso ideale per principianti, che copre i
+            concetti fondamentali della programmazione utilizzando linguaggi come Python, JavaScript o Java. Sviluppo
+            Web Front-end: Approfondisci le tue competenze nello sviluppo di interfacce utente responsive e dinamiche
             utilizzando HTML, CSS e JavaScript moderno. Sviluppo Web Back-end: Impara a costruire robuste API e servizi
             web utilizzando framework popolari come Node.js, Django o Spring Boot.
           </p>
@@ -131,18 +132,19 @@ const CoursesList = () => {
         {selectedCourse && (
           <Col md={8} className="mb-4">
             <Card
-              className="card border border-3 rounded-top border-light"
+              className="panoramic-card border border-3 rounded-top border-light"
               onClick={() => handleOpenModal(selectedCourse)}
             >
               <Row className="g-0">
                 <Col md={4}>
-                  <Card.Img className="courseList-image rounded-top" variant="top" src={selectedCourse.image} />
+                  <Card.Img className=" rounded-top" variant="top" src={selectedCourse.image} />
                 </Col>
                 <Col md={8}>
                   <Card.Body>
                     <Card.Title>{selectedCourse.title}</Card.Title>
                     <Card.Text>{selectedCourse.description}</Card.Text>
                     <Card.Footer>
+                      <p className="text-center mb-4">Creato da: {selectedCourse.creator_name}</p>
                       <p>Prezzo {selectedCourse.price}</p>
                     </Card.Footer>
                   </Card.Body>

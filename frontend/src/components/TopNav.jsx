@@ -39,7 +39,7 @@ const TopNav = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarNav" />
           <Navbar.Collapse id="navbarNav" className="justify-content-end">
-            <Nav className="navbar-nav ms-auto gap-1">
+            <Nav className="navbar-nav ms-auto gap-2">
               <Nav.Link as={Link} to="/courses-list" className="link-nav mx-lg-2">
                 Corsi
               </Nav.Link>
@@ -47,13 +47,13 @@ const TopNav = () => {
               <Nav.Link className="link-nav mx-lg-2" href="/quiz">
                 Quiz
               </Nav.Link>
-              <Nav.Link className="link-nav mx-lg-2" href="#action2">
+              <Nav.Link className="link-nav mx-lg-2" href="/about">
                 About
               </Nav.Link>
 
-              <Nav.Link className="link-nav mx-lg-2" href="#action4">
+              {/* <Nav.Link className="link-nav mx-lg-2" href="#action4">
                 Contact
-              </Nav.Link>
+              </Nav.Link> */}
               {user && (
                 <>
                   {user.role === "teacher" ? (
@@ -74,7 +74,11 @@ const TopNav = () => {
               {user && user.role === "teacher" ? (
                 <div className="d-flex align-items-center">
                   <Dropdown>
-                    <Dropdown.Toggle className="user-login text-decoration-none" variant="link" id="dropdown-basic">
+                    <Dropdown.Toggle
+                      className="user-login text-decoration-none fw-semibold"
+                      variant="link"
+                      id="dropdown-basic"
+                    >
                       {user.name}
                     </Dropdown.Toggle>
 
@@ -87,7 +91,11 @@ const TopNav = () => {
                 <div className="d-flex align-items-center">
                   <FaUserGraduate className="me-2" />
                   <Dropdown>
-                    <Dropdown.Toggle className="user-login text-decoration-none" variant="link" id="dropdown-basic">
+                    <Dropdown.Toggle
+                      className="user-login text-decoration-none fw-semibold"
+                      variant="link"
+                      id="dropdown-basic"
+                    >
                       {user.name}
                     </Dropdown.Toggle>
 

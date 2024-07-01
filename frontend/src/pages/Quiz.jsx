@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import animationData from "../../src/assets/Quiz.json";
-import "./Quiz.css";
 import Lottie from "lottie-react";
 import AOS from "aos";
 import { TiTick } from "react-icons/ti";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
+import animationData from "../../src/assets/Quiz.json";
+import "./Quiz.css";
 
 const Quiz = () => {
+  useEffect(() => {
+    AOS.init(); // Inizializza AOS per le animazioni
+  }, []);
+
   return (
     <Container>
-      <h1 className="quiz-title text-center">Sala Giochi</h1>
+      <h1 className="text-center course-list-title dysplay-1">Sala Giochi</h1>
 
       <Row className="row-container-hero">
-        <Col>
+        <Col md={6} className="d-flex align-items-center">
           <Lottie
             className="hero-quiz-animation img-fluid px-3 py-2 ms-lg-5"
             data-aos="zoom-in"
@@ -23,7 +27,7 @@ const Quiz = () => {
             loop={true}
           />
         </Col>
-        <Col>
+        <Col md={6} className="body-quiz">
           <p className="p-hero-quiz fs-5 fw-semibold lh-lg">
             Benvenuto nella nostra Sala Giochi!
             <br />
@@ -31,22 +35,20 @@ const Quiz = () => {
             sfidarti e divertire.
           </p>
           <br />
-          <p className="lh-base mt-1 fs-5">
-            <div className="" data-aos="fade-left" data-aos-duration="1000">
-              <TiTick className="icon-tick fs-1 " />
+          <div className="d-flex flex-column">
+            <div className="mb-3" data-aos="fade-left" data-aos-duration="1000">
+              <TiTick className="icon-tick fs-1" />
               Feedback immediato al termine del quiz
             </div>
-            <br />
-            <div data-aos="fade-left" data-aos-duration="1300">
+            <div className="mb-3" data-aos="fade-left" data-aos-duration="1300">
               <TiTick className="icon-tick fs-1" />
               Valutazione Finale: Scopri il tuo punteggio
             </div>
-            <br />
-            <div data-aos="fade-left" data-aos-duration="1600">
+            <div className="mb-3" data-aos="fade-left" data-aos-duration="1600">
               <TiTick className="icon-tick fs-1" />
               Interfaccia Intuitiva: Un design moderno e user-friendly
             </div>
-          </p>
+          </div>
         </Col>
         <div className="d-flex justify-content-center container-icon-quiz">
           <IoIosArrowDropdownCircle className="float-icon float-icon-quiz" />
@@ -54,14 +56,24 @@ const Quiz = () => {
       </Row>
 
       <Row>
-        <Col md={6}>
+        <Col md={6} className="mx-auto">
           <div className="list-group">
             <Link to="/scopri-se-fa-per-te" className="list-group-item list-group-item-action" aria-current="true">
               <div className="d-flex w-100 justify-content-center">
                 <h5 className="mb-1">Scopri se fa per te</h5>
               </div>
-              <p className="mb-1">Mettiti alla prova con delle semplici domande di programmazione generale </p>
-
+              <p className="mb-1">Mettiti alla prova con delle semplici domande di programmazione generale</p>
+              <small className="text-success fs-6 fw-semibold">BASE</small>
+            </Link>
+          </div>
+        </Col>
+        <Col md={6} className="mx-auto">
+          <div className="list-group">
+            <Link to="/scopri-se-fa-per-te" className="list-group-item list-group-item-action" aria-current="true">
+              <div className="d-flex w-100 justify-content-center">
+                <h5 className="mb-1">Scopri se fa per te</h5>
+              </div>
+              <p className="mb-1">Mettiti alla prova con delle semplici domande di programmazione generale</p>
               <small className="text-success fs-6 fw-semibold">BASE</small>
             </Link>
           </div>

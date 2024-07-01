@@ -136,7 +136,7 @@ const Home = () => {
           <Col>
             <div className="hero-text me-3">
               <div className="typewriter">
-                <h1 className="title-hero fw-bold">Diventa un Developer</h1>
+                <h1 className="title-hero fw-bold dysplay-2">Diventa un Developer</h1>
               </div>
               {/* <h1 className="title-margin">Become a developer</h1> */}
               <p className="p-hero lead">
@@ -188,7 +188,7 @@ const Home = () => {
                 <CgFileDocument className="text-white fs-1" />
               </div>
               <div className="ms-4 text-center">
-                <h3>Lorem ipsum</h3>
+                <h3 className="fw-semibold">Lorem ipsum</h3>
                 <p className="lead">Lorem ipsum dolor sit amet.</p>
               </div>
             </div>
@@ -199,7 +199,7 @@ const Home = () => {
                 <PiVideoLight className="text-white fs-1" />
               </div>
               <div className="ms-4 text-center">
-                <h3>Lorem ipsum</h3>
+                <h3 className="fw-semibold">Lorem ipsum</h3>
                 <p className="lead">Lorem ipsum dolor sit amet.</p>
               </div>
             </div>
@@ -210,7 +210,7 @@ const Home = () => {
                 <MdComputer className="text-white fs-1" />
               </div>
               <div className="ms-4 text-center">
-                <h3>Lorem ipsum</h3>
+                <h3 className="fw-semibold">Lorem ipsum</h3>
                 <p className="lead">Lorem ipsum dolor sit amet.</p>
               </div>
             </div>
@@ -222,7 +222,7 @@ const Home = () => {
       <Container fluid className="section2 mt-5" data-aos="fade-right" data-aos-duration="2500">
         <Row className="text-center mb-4">
           <Col xs={12}>
-            <h2 className="mt-5">What Kind of Courses of Learning</h2>
+            <h2 className="mt-5 dysplay-2 fw-semibold">What Kind of Courses of Learning</h2>
             <p className="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
           </Col>
         </Row>
@@ -264,7 +264,7 @@ const Home = () => {
       </Container>
       {/* Section3 Card's Course */}
       <Container className="">
-        <h2 className="text-center py-4" data-aos="fade-up" data-aos-duration="5000">
+        <h2 className="text-center py-4 dysplay-1 fw-semibold" data-aos="fade-up" data-aos-duration="5000">
           I nostri corsi
         </h2>
 
@@ -384,8 +384,8 @@ const Home = () => {
       {/* Section 4 Quiz */}
       <Container fluid className=" quiz-section mt-2 py-4" data-aos="fade-up" data-aos-duration="2000" loop={true}>
         <Row className="align-content-center justify-content-center container-quiz-home text-white">
-          <Col sm={12} md={9} lg={6} xl={6} xxl={6} className="quiz-col">
-            <h2>Divertiti con i nostri quiz!</h2>
+          <Col xs={12} sm={12} md={9} lg={6} xl={6} xxl={6} className="quiz-col">
+            <h2 className="dysplay-2 fw-semibold">Divertiti con i nostri quiz!</h2>
             <p className="mb-5 lead">Lorem ipsum dolor sit amet.lorem10 Lorem ipsum dolor sit, amet consectetur</p>
             <Nav.Link className="login-button quiz-home-btn w-50 text-white text-center" href="/scopri-se-fa-per-te">
               l'informatica fa per te?
@@ -424,7 +424,7 @@ const Home = () => {
       {/* Section 5 Teacher */}
       <Container fluid className="section5 mt-5 py-4" data-aos="fade-up" data-aos-duration="2000">
         <Row className="align-items-start justify-content-center">
-          <Col lg={8} xl={8} xxl={6}>
+          <Col xs={12} lg={8} xl={8} xxl={6}>
             <Tilt
               className="tilt-container"
               tiltMaxAngleX={25}
@@ -435,7 +435,7 @@ const Home = () => {
               gyroscope={true}
             >
               <Lottie
-                className="animation-section5 mx-auto"
+                className="animation-section5 "
                 animationData={sectionTeacher}
                 loop={true}
                 data-aos="fade-in"
@@ -447,8 +447,8 @@ const Home = () => {
               />
             </Tilt>
           </Col>
-          <Col lg={4} xl={4} xxl={6}>
-            <h2 className="mt-5">Teacher</h2>
+          <Col xs={12} lg={4} xl={4} xxl={6}>
+            <h2 className="mt-5 dysplay-2 fw-semibold">Teacher</h2>
             <p className=" lead">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br /> Nostrum eveniet maiores ab numquam
               facilis minus Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati, a?
@@ -459,7 +459,7 @@ const Home = () => {
       {/* Testimonials */}
       <Container fluid className="section6 mt-5 py-4" data-aos="fade-up" data-aos-duration="2000">
         <Row className="justify-content-center">
-          <h2 className="text-center mt-1 py-4">Testimonials</h2>
+          <h2 className="text-center mt-1 py-4 dysplay-2 fw-light">Testimonials</h2>
           <Col md={10}>
             <Carousel
               fade

@@ -21,6 +21,8 @@ import ScopriSeFaPerTe from "./components/quiz/ScopriSeFaPerTe";
 import PaymentForm from "./pages/PaymentForm";
 import PurchasedCourses from "./pages/PurchasedCourses";
 import Footer from "./components/Footer";
+import About from "./pages/About";
+import NotFoundPage from "./pages/404";
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -55,7 +57,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/courses-list" element={<CoursesList />} />
-        <Route path="*" element={<Navigate to="/404" />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/404" element={<NotFoundPage />} />
         {/* Rotte per gestire i quiz */}
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/scopri-se-fa-per-te" element={<ScopriSeFaPerTe />} />

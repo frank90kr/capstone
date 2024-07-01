@@ -13,22 +13,22 @@ const Footer = () => {
           <h5>Menu</h5>
           <ul className="list-unstyled text-small">
             <li>
-              <Link to="#" className="footer-link">
+              <Link to="/courses-list" className="footer-link">
                 Corsi
               </Link>
             </li>
             <li>
-              <Link to="#" className="footer-link">
+              <Link to="/quiz" className="footer-link">
                 Quiz
               </Link>
             </li>
             <li>
-              <Link to="#" className="footer-link">
+              <Link to="/about" className="footer-link">
                 About
               </Link>
             </li>
             <li>
-              <Link to="#" className="footer-link">
+              <Link to="/about" className="footer-link">
                 Contatti
               </Link>
             </li>
@@ -38,7 +38,7 @@ const Footer = () => {
           <h5>Link utili</h5>
           <ul className="list-unstyled text-small">
             <li>
-              <Link to="#" className="footer-link">
+              <Link to="/about" className="footer-link">
                 Chi siamo
               </Link>
             </li>
