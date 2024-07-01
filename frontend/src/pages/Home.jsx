@@ -18,10 +18,11 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaQuoteLeft } from "react-icons/fa6";
-import { IoIosArrowBack, IoIosArrowDropleftCircle, IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { BiSolidLeftArrow } from "react-icons/bi";
+import { MdAdsClick } from "react-icons/md";
 
 import Tilt from "react-parallax-tilt";
 
@@ -120,6 +121,14 @@ const Home = () => {
     });
   };
 
+  const handleMouseEnter = (event) => {
+    event.currentTarget.querySelector(".hover-text").classList.add("aos-animate");
+  };
+
+  const handleMouseLeave = (event) => {
+    event.currentTarget.querySelector(".hover-text").classList.remove("aos-animate");
+  };
+
   return (
     <div className="body">
       <Container>
@@ -127,7 +136,7 @@ const Home = () => {
           <Col>
             <div className="hero-text me-3">
               <div className="typewriter">
-                <h1 className="title-hero">Diventa un Developer</h1>
+                <h1 className="title-hero fw-bold">Diventa un Developer</h1>
               </div>
               {/* <h1 className="title-margin">Become a developer</h1> */}
               <p className="p-hero lead">
@@ -233,7 +242,11 @@ const Home = () => {
           </Col>
         </Row>
 
-        <Row className="text-dark justify-content-center mx-auto mb-4 flex-wrap icon-row">
+        <Row
+          className="text-dark justify-content-center mx-auto mb-4 flex-wrap icon-row"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
           <Col xs={4} className="d-flex flex-column align-items-center icon1">
             <FaLaptopHouse className="fs-2" />
             {/* Aggiungi size per aumentare le dimensioni dell'icona se necessario */}
@@ -251,7 +264,9 @@ const Home = () => {
       </Container>
       {/* Section3 Card's Course */}
       <Container className="">
-        <h2 className="text-center py-4">I nostri corsi</h2>
+        <h2 className="text-center py-4" data-aos="fade-up" data-aos-duration="5000">
+          I nostri corsi
+        </h2>
 
         <div className="carousel-arrows-wrapper d-flex justify-content-center mt-3">
           {activeIndex > 0 && (
@@ -266,7 +281,7 @@ const Home = () => {
           )}
         </div>
 
-        <Row className="justify-content-center flex-nowrap mt-5 mx-auto">
+        <Row className="justify-content-center flex-nowrap mt-5 mx-auto py-1 px-3">
           <Col>
             <Carousel
               activeIndex={activeIndex}
@@ -285,6 +300,10 @@ const Home = () => {
                         <Card
                           className="card border border-2 border-light course-card"
                           onClick={() => handleOpenModal(course)}
+                          data-aos="flip-left"
+                          data-aos-duration="4000"
+                          onMouseEnter={handleMouseEnter}
+                          onMouseLeave={handleMouseLeave}
                         >
                           <Card.Img className="course-image rounded-top" variant="top" src={course.image} />
                           <Card.Body>
@@ -292,6 +311,10 @@ const Home = () => {
                             <Card.Text>{course.description}</Card.Text>
                           </Card.Body>
                           <Card.Footer>
+                            <div className="hover-text text-center">
+                              Vai al corso
+                              <MdAdsClick className="" size={28} />
+                            </div>
                             <p className="text-center mb-4">Creato da: {course.creator_name}</p>
                             <p>Prezzo: {course.price}</p>
                           </Card.Footer>
@@ -359,7 +382,7 @@ const Home = () => {
       </Container>
 
       {/* Section 4 Quiz */}
-      <Container fluid className="py-5 quiz-section mt-5" data-aos="fade-up" data-aos-duration="2000" loop={true}>
+      <Container fluid className=" quiz-section mt-2 py-4" data-aos="fade-up" data-aos-duration="2000" loop={true}>
         <Row className="align-content-center justify-content-center container-quiz-home text-white">
           <Col sm={12} md={9} lg={6} xl={6} xxl={6} className="quiz-col">
             <h2>Divertiti con i nostri quiz!</h2>
@@ -399,7 +422,7 @@ const Home = () => {
         </Row>
       </Container>
       {/* Section 5 Teacher */}
-      <Container fluid className="section5 mt-5" data-aos="fade-in" data-aos-duration="2500">
+      <Container fluid className="section5 mt-5 py-4" data-aos="fade-up" data-aos-duration="2000">
         <Row className="align-items-start justify-content-center">
           <Col lg={8} xl={8} xxl={6}>
             <Tilt
@@ -433,7 +456,8 @@ const Home = () => {
           </Col>
         </Row>
       </Container>
-      <Container fluid className="section6 mt-5">
+      {/* Testimonials */}
+      <Container fluid className="section6 mt-5 py-4" data-aos="fade-up" data-aos-duration="2000">
         <Row className="justify-content-center">
           <h2 className="text-center mt-1 py-4">Testimonials</h2>
           <Col md={10}>

@@ -31,7 +31,9 @@ const TopNav = () => {
       <Navbar expand="lg" className="navbar navbar-expand-lg fixed-top">
         <Container>
           <Navbar.Brand className="me-auto">
-            <Link className="navbar-brand" to="/">
+            {/* <img src="/home_img/logo-DevNeXt.png" alt="" /> */}
+
+            <Link className="navbar-brand fw-bold" to="/">
               Dev NeXt
             </Link>
           </Navbar.Brand>

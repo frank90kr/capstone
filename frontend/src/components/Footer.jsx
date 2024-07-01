@@ -1,13 +1,13 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./Footer.css";
 
 const Footer = () => {
   return (
     <Container fluid>
       <Row className="footer py-5 mt-5">
         <Col xs={12} md={4}>
-          <p>Dev NeXt</p>
-          <small className="d-block ">© 2024</small>
+          <p className="fw-bold fs-5">Dev NeXt</p>
         </Col>
         <Col xs={6} md={2}>
           <h5>Menu</h5>
@@ -83,6 +83,10 @@ const Footer = () => {
               </Link>
             </li>
           </ul>
+        </Col>
+        <Col xs={12}>
+          <hr className="hr-footer bg-white opacity-100 mt-3" />
+          <small className="d-block ">© 2024</small>
         </Col>
       </Row>
     </Container>
